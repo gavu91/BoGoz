@@ -1,0 +1,16 @@
+{
+  "name": "appv1",
+  "version": "1.0.0",
+  "description": "Kindle Application for PDF Books",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^4.1.1",
+    "jquery": "^3.3.1",
+    "macaddress": "^0.2.9"
+  }
+}
