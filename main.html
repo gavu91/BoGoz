@@ -265,6 +265,8 @@
                                             <p>
                                                 <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
                                                     CART</a>
+
+                                                <button onclick="openPDf()" class="btn btn-success waves-effect" role="button">VIEW DEMO</a>
                                             </p>
                                         </div>
                                     </div>
@@ -453,6 +455,17 @@
         macaddress.one(function (err, mac) {
             console.log(mac);
         });
+
+        function openPDf(){
+            const { BrowserWindow } = require('electron').remote
+                const PDFWindow = require('electron-pdf-window')
+                
+                const win = new BrowserWindow({ width: 800, height: 600 })
+                
+                PDFWindow.addSupport(win)
+                
+                win.loadURL('http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf')
+        }
 
         $(document).ready(function () {
             $('.dropdown-submenu a.test').click(function (e) {
