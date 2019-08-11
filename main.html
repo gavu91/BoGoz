@@ -110,18 +110,18 @@
                         <i class="material-icons pull-right">refresh</i>
                     </li>
                     <li>
-                        <a href="#" class="menu-toggle waves-effect waves-block zeroMenu">
+                        <a href="#" class="" id="aAll">
                             <span>All</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu-toggle waves-effect waves-block zeroMenu">
-                            <span>Downloaded</span>
+                        <a href="#" class="" id="aBuy">
+                            <span>Purchase</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu-toggle waves-effect waves-block zeroMenu">
-                            <span>PDFs</span>
+                        <a href="#" class="" id="aSample">
+                            <span>Demo eBooks</span>
                         </a>
                     </li>
                     <li class="header">
@@ -170,7 +170,7 @@
                             <div class="row">
                                 <div class="dropdown mainmenu">
                                     <button class="btn btn-default dropdown-toggle" type="button"
-                                        data-toggle="dropdown">Video Books
+                                        data-toggle="dropdown"> E - Books
                                         <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
@@ -198,7 +198,7 @@
                                 </div>
                                 <div class="dropdown mainmenu">
                                     <button class="btn btn-default dropdown-toggle" type="button"
-                                        data-toggle="dropdown">E-Books
+                                        data-toggle="dropdown"> Video Books
                                         <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-submenu">
@@ -224,94 +224,74 @@
                                         <li><a tabindex="-1" href="#">Other</a></li>
                                     </ul>
                                 </div>
-                                <div class="dropdown mainmenu">
-                                    <button class="btn btn-default dropdown-toggle" type="button"
-                                        data-toggle="dropdown">Books
-                                        <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown-submenu">
-                                            <a class="test" tabindex="-1" href="#">Commerce <span
-                                                    class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a tabindex="-1" href="#" class="clsCategory"
-                                                        data-cid="9">Account</a></li>
-                                                <li><a tabindex="-1" href="#" class="clsCategory"
-                                                        data-cid="10">State</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a class="test" tabindex="-1" href="#">Science <span
-                                                    class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a tabindex="-1" href="#" class="clsCategory"
-                                                        data-cid="11">Chemistry</a></li>
-                                                <li><a tabindex="-1" href="#" class="clsCategory"
-                                                        data-cid="12">Physics</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a tabindex="-1" href="#">Other</a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="row linkCategory" id="linkCategory1">
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf1.png">
+                                        <img src="PDF/1.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 1</h3>
+                                            <h3>Account</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
-
-                                                <button onclick="openPDf()" class="btn btn-success waves-effect" role="button">VIEW DEMO</a>
+                                                <button
+                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
+                                                    class="btn btn-success">VIEW BOOK</button>
+                                                <button
+                                                    onclick="downloadPDF('FREE', 'http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
+                                                    class="btn btn-primary"> DOWNLOAD </button>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf2.jpg">
+                                        <img src="PDF/2.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 2</h3>
+                                            <h3>Economics</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
+                                                <button
+                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-103.pdf')"
+                                                    class="btn btn-success">VIEW BOOK</button>
+                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf3.jpg">
+                                        <img src="PDF/3.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 3</h3>
+                                            <h3>State</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
+                                                <button
+                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-205.pdf')"
+                                                    class="btn btn-success">VIEW BOOK</button>
+                                                <a href="#" class="btn btn-primary"> BUY </a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf4.jpg">
+                                        <img src="PDF/4.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 4</h3>
+                                            <h3>Account</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
+                                                <button
+                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
+                                                    class="btn btn-success">VIEW BOOK</button>
+                                                <a href="#" class="btn btn-primary"> BUY </a>
                                             </p>
                                         </div>
                                     </div>
@@ -321,30 +301,34 @@
                             <div class="row linkCategory" id="linkCategory2" style="display: none;">
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf3.jpg">
+                                        <img src="PDF/5.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 3</h3>
+                                            <h3>BA</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
+                                                <button
+                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-203.pdf')"
+                                                    class="btn btn-success">VIEW BOOK</button>
+                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf4.jpg">
+                                        <img src="PDF/6.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 4</h3>
+                                            <h3>Account</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
+                                                <button
+                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
+                                                    class="btn btn-success">VIEW BOOK</button>
+                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
                                             </p>
                                         </div>
                                     </div>
@@ -354,30 +338,35 @@
                             <div class="row linkCategory" id="linkCategory3" style="display: none;">
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf1.png">
+                                        <img src="PDF/7.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 1</h3>
+                                            <h3>Economics</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
+                                                <button
+                                                    onclick="openVIDEO('https://a2.udemycdn.com/2013-01-08_09-02-17-ba289ed428cbfd72d4725da8f238d314/WebHD_720p.mp4?nva=20190808190212&token=0b0163a7eb2838980b53e')"
+                                                    class="btn btn-success">VIEW VIDEO</button>
+                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf4.jpg">
+                                        <img src="PDF/8.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 4</h3>
+                                            <h3>Physics</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
+                                                <button
+                                                    onclick="openVIDEO('https://a2.udemycdn.com/2016-06-05_18-14-59-a6322d1b4977d0f8f1546755badb37b4/WebHD_720p.mp4?nva=20190808193538&token=062cbf485ebf352228850')"
+                                                    class="btn btn-success">VIEW
+                                                    VIDEO</button>
+                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
                                             </p>
                                         </div>
                                     </div>
@@ -387,45 +376,30 @@
                             <div class="row linkCategory" id="linkCategory4" style="display: none;">
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf1.png">
+                                        <img src="PDF/9.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 1</h3>
+                                            <h3>Physics</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
+                                                <button onclick="openPDf()" class="btn btn-success">VIEW BOOK</button>
+                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="thumbnail">
-                                        <img src="PDF/pdf2.jpg">
+                                        <img src="PDF/10.jpg" style="height: 300px; width: 250px;" />
                                         <div class="caption">
-                                            <h3>Demo PDF 2</h3>
+                                            <h3>Computer</h3>
                                             <p>
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="thumbnail">
-                                        <img src="PDF/pdf3.jpg">
-                                        <div class="caption">
-                                            <h3>Demo PDF 3</h3>
-                                            <p>
-                                                This is a demo pdf file
-                                            </p>
-                                            <p>
-                                                <a href="#" class="btn btn-success waves-effect" role="button">ADD TO
-                                                    CART</a>
+                                                <button onclick="openPDf()" class="btn btn-success">VIEW BOOK</button>
+                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
                                             </p>
                                         </div>
                                     </div>
@@ -456,18 +430,49 @@
             console.log(mac);
         });
 
-        function openPDf(){
+        function openPDf(url) {
             const { BrowserWindow } = require('electron').remote
-                const PDFWindow = require('electron-pdf-window')
-                
-                const win = new BrowserWindow({ width: 800, height: 600 })
-                
-                PDFWindow.addSupport(win)
-                
-                win.loadURL('http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf')
+            const PDFWindow = require('electron-pdf-window')
+            const win = new BrowserWindow({ width: 1600, height: 900 })
+            PDFWindow.addSupport(win)
+            win.loadURL(url)
+        }
+
+        function openVIDEO(url) {
+            window.localStorage.setItem("linkURL", url);
+
+            window.location.href = "videoplayer.html";
+        }
+
+        function downloadPDF(d1, d2) {
+            const fs = require("fs");
+            const { dialog } = require("electron").remote;
+
+            var filenames = "downloadPDF.txt";
+
+            var newContent = d1 + "=" + d2;
+            fs.writeFileSync(filenames, newContent, 'utf-8');
         }
 
         $(document).ready(function () {
+            $('#aAll').click(function (e) {
+                e.preventDefault();
+
+                window.location.href = "main.html";
+            });
+
+            $('#aBuy').click(function (e) {
+                e.preventDefault();
+
+                window.location.href = "main.html";
+            });
+
+            $('#aSample').click(function (e) {
+                e.preventDefault();
+
+                window.location.href = "main.html";
+            });
+
             $('.dropdown-submenu a.test').click(function (e) {
                 $(this).next('ul').toggle();
                 e.stopPropagation();
@@ -487,41 +492,25 @@
                 }
                 if (categoryID == 3) {
                     $(".linkCategory").css("display", "none");
-                    $("#linkCategory3").css("display", "block");
+                    $("#linkCategory1").css("display", "block");
                 }
                 if (categoryID == 4) {
                     $(".linkCategory").css("display", "none");
-                    $("#linkCategory4").css("display", "block");
+                    $("#linkCategory2").css("display", "block");
                 }
                 if (categoryID == 5) {
                     $(".linkCategory").css("display", "none");
-                    $("#linkCategory1").css("display", "block");
+                    $("#linkCategory3").css("display", "block");
                 }
                 if (categoryID == 6) {
                     $(".linkCategory").css("display", "none");
-                    $("#linkCategory2").css("display", "block");
+                    $("#linkCategory4").css("display", "block");
                 }
                 if (categoryID == 7) {
                     $(".linkCategory").css("display", "none");
                     $("#linkCategory3").css("display", "block");
                 }
                 if (categoryID == 8) {
-                    $(".linkCategory").css("display", "none");
-                    $("#linkCategory4").css("display", "block");
-                }
-                if (categoryID == 9) {
-                    $(".linkCategory").css("display", "none");
-                    $("#linkCategory1").css("display", "block");
-                }
-                if (categoryID == 10) {
-                    $(".linkCategory").css("display", "none");
-                    $("#linkCategory2").css("display", "block");
-                }
-                if (categoryID == 11) {
-                    $(".linkCategory").css("display", "none");
-                    $("#linkCategory3").css("display", "block");
-                }
-                if (categoryID == 12) {
                     $(".linkCategory").css("display", "none");
                     $("#linkCategory4").css("display", "block");
                 }

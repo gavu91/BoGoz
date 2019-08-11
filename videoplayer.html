@@ -14,6 +14,27 @@
     <link href="THEME/plugins/animate-css/animate.css" rel="stylesheet" />
     <link href="THEME/css/style.css" rel="stylesheet">
     <link href="THEME/css/themes/all-themes.css" rel="stylesheet" />
+    <style>
+        .sidebar .menu .list .zeroMenu::before {
+            content: '0' !important;
+        }
+
+        .mainmenu {
+            float: left;
+            margin-bottom: 2%;
+            margin-left: 2%;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+    </style>
 </head>
 
 <body class="theme-light-blue">
@@ -69,33 +90,85 @@
             </div>
         </div>
     </nav>
-    <section class="content" style="margin: 110px 0px 0 0px"> 
+    <section>
+        <aside id="leftsidebar" class="sidebar">
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">
+                        <i class="material-icons">book</i>
+                        <big>
+                            <big>
+                                <big>
+                                    <big>
+                                        <big>
+                                            <b>Library</b>
+                                        </big>
+                                    </big>
+                                </big>
+                            </big>
+                        </big>
+                        <i class="material-icons pull-right">refresh</i>
+                    </li>
+                    <li>
+                        <a href="#" class="" id="aAll">
+                            <span>All</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="" id="aBuy">
+                            <span>Purchase</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="" id="aSample">
+                            <span>Demo eBooks</span>
+                        </a>
+                    </li>
+                    <li class="header">
+                        <i class="material-icons">list</i>
+                        <big>
+                            <big>
+                                <big>
+                                    <big>
+                                        <big>
+                                            <b>Collections</b>
+                                        </big>
+                                    </big>
+                                </big>
+                            </big>
+                        </big>
+                        <i class="material-icons pull-right">swap_vert</i>
+                        <i class="material-icons pull-right">add</i>
+                    </li>
+                    <li>
+                        <div class="input-group" style="padding: 5%;">
+                            <span class="input-group-addon">
+                                <i class="material-icons">search</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control" placeholder="Search Collection Name" />
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2019
+                    <a href="#">Bygoz e-Learning Private Limited</a>.
+                </div>
+            </div>
+        </aside>
+    </section>
+    <section class="content">
         <div class="container-fluid">
 
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                            <div class="row">
-                                <div class="col-sm-4 col-sm-offset-4">
-                                    <div class="login-form">
-                                        <h4>Login to your account</h4>
-                                        <br />
-                                        <form action="#">
-                                            <input type="text" id="txtUsername" class="form-control"
-                                                placeholder="Username" />
-                                            <br />
-                                            <input type="password" id="txtPassword" class="form-control"
-                                                placeholder="Password" />
-                                            <br />
-                                            <button type="submit" id="btnLogin" class="btn btn-success"
-                                                style="width: 100%;">SIGN IN</button>
-                                            <br /><br />
-                                            <a href="#" id="aSignUp">Sign up</a>
-                                            <a href="#" id="aForgotPassword" style="float: right;">Forgot Password</a>
-                                        </form>
-                                    </div>
-                                </div>
+                            <div class="row" id="loadVideo">
+
                             </div>
                         </div>
                     </div>
@@ -114,38 +187,41 @@
     <script src="THEME/js/demo.js"></script>
     <script src="THEME/js/custom.js"></script>
     <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+        var macaddress = require('macaddress');
+
+        macaddress.one(function (err, mac) {
+            console.log(mac);
+        });
+
+        $(function () {
+            var linkURL = '';
+
+            if (window.localStorage.getItem("linkURL") != null) {
+                linkURL = window.localStorage.getItem("linkURL");
+            }
+
+            $("#loadVideo").html('<video controls="controls" src="' + linkURL + '" style="width: 100%;"></video>')
+        });
+
         $(document).ready(function () {
-            $("#aSignUp").click(function (e) {
+            $('#aAll').click(function (e) {
                 e.preventDefault();
 
-                window.location.href = "register.html";
+                window.location.href = "main.html";
             });
 
-            $("#aForgotPassword").click(function (e) {
+            $('#aBuy').click(function (e) {
                 e.preventDefault();
 
-                window.location.href = "forgotpassword.html";
+                window.location.href = "main.html";
             });
 
-            $("#btnLogin").click(function (e) {
+            $('#aSample').click(function (e) {
                 e.preventDefault();
 
-                if ($("#txtUsername").val() != "" && $("#txtUsername").val() != null && $("#txtUsername").val() != undefined && $("#txtPassword").val() != "" && $("#txtPassword").val() != null && $("#txtPassword").val() != undefined) {
-                    if ($("#txtUsername").val() == "bygoz" && $("#txtPassword").val() == "123456") {
-                        window.localStorage.setItem("isAuthenticate", "Yes");
-                        window.localStorage.setItem("Username", $("#txtUsername").val());
-                        window.localStorage.setItem("Password", $("#txtPassword").val());
-                        window.location.href = "index.html";
-                    }
-                    else {
-                        toastr.options.positionClass = "toast-bottom-left";
-                        toastr.error('Username or password are wrong.', 'Invalid');
-                    }
-                }
-                else {
-                    toastr.options.positionClass = "toast-bottom-left";
-                    toastr.error('Please enter Username and Password.', 'Required');
-                }
+                window.location.href = "main.html";
             });
         });
     </script>
