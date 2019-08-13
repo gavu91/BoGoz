@@ -238,9 +238,8 @@
                                                 <button
                                                     onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
                                                     class="btn btn-success">VIEW BOOK</button>
-                                                <button
-                                                    onclick="downloadPDF('FREE', 'http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
-                                                    class="btn btn-primary"> DOWNLOAD </button>
+                                                <button onclick="download('1')" class="btn btn-primary"> DOWNLOAD
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -257,7 +256,8 @@
                                                 <button
                                                     onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-103.pdf')"
                                                     class="btn btn-success">VIEW BOOK</button>
-                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
+                                                <button onclick="download('2')" class="btn btn-primary"> DOWNLOAD
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -274,7 +274,8 @@
                                                 <button
                                                     onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-205.pdf')"
                                                     class="btn btn-success">VIEW BOOK</button>
-                                                <a href="#" class="btn btn-primary"> BUY </a>
+                                                <button onclick="download('L')" class="btn btn-primary"> BUY
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -291,7 +292,8 @@
                                                 <button
                                                     onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
                                                     class="btn btn-success">VIEW BOOK</button>
-                                                <a href="#" class="btn btn-primary"> BUY </a>
+                                                <button onclick="download('L')" class="btn btn-primary"> BUY
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -311,7 +313,8 @@
                                                 <button
                                                     onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-203.pdf')"
                                                     class="btn btn-success">VIEW BOOK</button>
-                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
+                                                <button onclick="download('5')" class="btn btn-primary"> DOWNLOAD
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -328,7 +331,8 @@
                                                 <button
                                                     onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
                                                     class="btn btn-success">VIEW BOOK</button>
-                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
+                                                <button onclick="download('6')" class="btn btn-primary"> DOWNLOAD
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -342,13 +346,14 @@
                                         <div class="caption">
                                             <h3>Economics</h3>
                                             <p>
-                                                This is a demo pdf file
+                                                This is a demo video file
                                             </p>
                                             <p>
                                                 <button
                                                     onclick="openVIDEO('https://a2.udemycdn.com/2013-01-08_09-02-17-ba289ed428cbfd72d4725da8f238d314/WebHD_720p.mp4?nva=20190808190212&token=0b0163a7eb2838980b53e')"
                                                     class="btn btn-success">VIEW VIDEO</button>
-                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
+                                                <button onclick="download('7')" class="btn btn-primary"> DOWNLOAD
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -359,14 +364,14 @@
                                         <div class="caption">
                                             <h3>Physics</h3>
                                             <p>
-                                                This is a demo pdf file
+                                                This is a demo video file
                                             </p>
                                             <p>
                                                 <button
                                                     onclick="openVIDEO('https://a2.udemycdn.com/2016-06-05_18-14-59-a6322d1b4977d0f8f1546755badb37b4/WebHD_720p.mp4?nva=20190808193538&token=062cbf485ebf352228850')"
-                                                    class="btn btn-success">VIEW
-                                                    VIDEO</button>
-                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
+                                                    class="btn btn-success">VIEW VIDEO</button>
+                                                <button onclick="download('8')" class="btn btn-primary"> DOWNLOAD
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -384,7 +389,8 @@
                                             </p>
                                             <p>
                                                 <button onclick="openPDf()" class="btn btn-success">VIEW BOOK</button>
-                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
+                                                <button onclick="download('L')" class="btn btn-primary"> BUY
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -399,7 +405,8 @@
                                             </p>
                                             <p>
                                                 <button onclick="openPDf()" class="btn btn-success">VIEW BOOK</button>
-                                                <a href="#" class="btn btn-primary"> DOWNLOAD </a>
+                                                <button onclick="download('L')" class="btn btn-primary"> BUY
+                                                </button>
                                             </p>
                                         </div>
                                     </div>
@@ -444,14 +451,38 @@
             window.location.href = "videoplayer.html";
         }
 
-        function downloadPDF(d1, d2) {
-            const fs = require("fs");
-            const { dialog } = require("electron").remote;
+        function uniqueList(lst) {
+            var res = [];
+            $.each(lst, function (i, e) {
+                if ($.inArray(e, res) == -1) res.push(e);
+            });
+            return res;
+        }
 
-            var filenames = "downloadPDF.txt";
+        var lstBooks = [];
+        function download(id) {
+            if (id == 'L') {
+                window.location.href = "login.html";
+            }
+            else {
+                if (window.localStorage.getItem("lstBooks") != null) {
+                    var lstOldBooks = window.localStorage.getItem("lstBooks");
+                    lstBooks.push(lstOldBooks);
+                }
+                else {
 
-            var newContent = d1 + "=" + d2;
-            fs.writeFileSync(filenames, newContent, 'utf-8');
+                }
+
+                lstBooks.push(id);
+
+                lstBooks = uniqueList(lstBooks);
+
+                window.localStorage.setItem("lstBooks", lstBooks);
+
+                //window.localStorage.removeItem("lstBooks");
+                
+                alert("Books successfully downloaded.");
+            }
         }
 
         $(document).ready(function () {
@@ -470,7 +501,7 @@
             $('#aSample').click(function (e) {
                 e.preventDefault();
 
-                window.location.href = "main.html";
+                window.location.href = "download.html";
             });
 
             $('.dropdown-submenu a.test').click(function (e) {

@@ -167,7 +167,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                            <div class="row" id="loadVideo">
+                            <div class="row lstBooks">
 
                             </div>
                         </div>
@@ -196,14 +196,75 @@
         });
 
         $(function () {
-            var linkURL = '';
+            if (window.localStorage.getItem("lstBooks") != null) {
+                var lstBooks = window.localStorage.getItem("lstBooks");
 
-            if (window.localStorage.getItem("linkURL") != null) {
-                linkURL = window.localStorage.getItem("linkURL");
+                var str = '';
+                for (i = 0; i < lstBooks.length; i++) {
+                    var imgURL = '';
+                    var captionTitle = '';
+                    var downloadButtonHTML = '';
+
+                    if (lstBooks[i] == "1") {
+                        imgURL = 'PDF/1.jpg';
+                        captionTitle = 'Account';
+                        downloadButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf\')" class="btn btn-success">VIEW BOOK</button>';
+                    }
+                    else if (lstBooks[i] == "2") {
+                        imgURL = 'PDF/2.jpg';
+                        captionTitle = 'Economics';
+                        downloadButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-103.pdf\')" class="btn btn-success">VIEW BOOK</button>';
+                    }
+                    else if (lstBooks[i] == "5") {
+                        imgURL = 'PDF/5.jpg';
+                        captionTitle = 'BA';
+                        downloadButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-203.pdf\')" class="btn btn-success">VIEW BOOK</button>';
+                    }
+                    else if (lstBooks[i] == "6") {
+                        imgURL = 'PDF/6.jpg';
+                        captionTitle = 'Account';
+                        downloadButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf\')" class="btn btn-success">VIEW BOOK</button>';
+                    }
+                    else if (lstBooks[i] == "7") {
+                        imgURL = 'PDF/7.jpg';
+                        captionTitle = 'Economics';
+                        downloadButtonHTML = '<button onclick="openVIDEO(\'https://a2.udemycdn.com/2013-01-08_09-02-17-ba289ed428cbfd72d4725da8f238d314/WebHD_720p.mp4?nva=20190808190212&token=0b0163a7eb2838980b53e\')" class="btn btn-success">VIEW VIDEO</button>';
+                    }
+                    else if (lstBooks[i] == "8") {
+                        imgURL = 'PDF/8.jpg';
+                        captionTitle = 'Physics';
+                        downloadButtonHTML = '<button onclick="openVIDEO(\'https://a2.udemycdn.com/2016-06-05_18-14-59-a6322d1b4977d0f8f1546755badb37b4/WebHD_720p.mp4?nva=20190808193538&token=062cbf485ebf352228850\')" class="btn btn-success">VIEW VIDEO</button>';
+                    }
+
+                    if (lstBooks[i] != ",") {
+                        str = str + '<div class="col-sm-6 col-md-3">';
+                        str = str + '<div class="thumbnail">';
+                        str = str + '<img src="' + imgURL + '" style="height: 300px; width: 250px;" />';
+                        str = str + '<div class="caption">';
+                        str = str + '<h3>' + captionTitle + '</h3>';
+                        str = str + '<p>This is a demo pdf file</p>';
+                        str = str + '<p>' + downloadButtonHTML + '</p>';
+                        str = str + '</div></div></div>';
+                    }
+                }
+
+                $(".lstBooks").html(str);
             }
-
-            $("#loadVideo").html('<video controls="controls" src="' + linkURL + '" style="width: 100%;"></video>')
         });
+
+        function openPDf(url) {
+            const { BrowserWindow } = require('electron').remote
+            const PDFWindow = require('electron-pdf-window')
+            const win = new BrowserWindow({ width: 1600, height: 900 })
+            PDFWindow.addSupport(win)
+            win.loadURL(url)
+        }
+
+        function openVIDEO(url) {
+            window.localStorage.setItem("linkURL", url);
+
+            window.location.href = "videoplayer.html";
+        }
 
         $(document).ready(function () {
             $('#aAll').click(function (e) {
