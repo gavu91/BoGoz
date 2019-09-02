@@ -4,13 +4,15 @@
   "description": "Kindle Application for PDF Books",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . bygoz  --asar --platform win32 --arch x64 --icon=icon/favicon.ico --out dist/  --overwrite"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "electron": "^4.1.1",
     "electron-pdf-window": "^1.0.12",
+    "electron-packager": "^13.1.1",
     "jquery": "^3.3.1",
     "macaddress": "^0.2.9"
   }

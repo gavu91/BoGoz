@@ -1,9 +1,10 @@
 const electron = require('electron');
 const path = require('path');
 const url = require('url');
-const { app, BrowserWindow, Menu, ipcMain } = electron;
+const { app, BrowserWindow, Menu, ipcMain,dialog } = electron;
 
-let mainWindow;
+let mainWindow; 
+let directQuit = 1;
 // SET ENV
 process.env.NODE_ENV = 'development';
 
@@ -16,28 +17,44 @@ app.on('ready', function () {
     protocol: 'file:',
     slashes: true
   }));
-  // Quit app when closed
-  mainWindow.on('closed', function () {
-    app.quit();
+ 
+  mainWindow.on('close', function (e) { 
+     preventClose(e);
   });
 
   // Build menu from template
   const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
   // Insert menu
   Menu.setApplicationMenu(mainMenu);
-});
+}); 
+
+function preventClose(e) {  
+  var choice = dialog.showMessageBox({
+    type: 'question',
+    buttons: ['Yes', 'No'],
+    title: 'Confirm',
+    message: 'Are you sure you want to quit?'
+  });
+   
+  if(choice == 0){
+    app.quit();
+  }  
+  else{
+    if(e != null && e != undefined)
+      e.preventDefault();
+  }
+};
 
 // Create menu template
-const mainMenuTemplate = [
-  // Each object is a dropdown
+const mainMenuTemplate = [ 
   {
     label: 'File',
     submenu: [
       {
         label: 'Exit',
         accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
-        click() {
-          app.quit();
+        click() {   
+          preventClose();
         }
       }
     ]
