@@ -1,6 +1,6 @@
-$("#aLogo").click(function (e) {
+$(".aLogo").click(function (e) {
     e.preventDefault();
-
+    
     window.location.href = "main.html";
 });
 

@@ -175,7 +175,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
-                            <div class="row lstBooks">
+                            <div class="row" id="loadBookDetail">
 
                             </div>
                         </div>
@@ -194,137 +194,110 @@
     <script src="THEME/js/admin.js"></script>
     <script src="THEME/js/demo.js"></script>
     <script src="THEME/js/custom.js"></script>
+
     <script>
-        const electron = require('electron');
-        const { ipcRenderer } = electron;
-        var macaddress = require('macaddress');
-
-        macaddress.one(function (err, mac) {
-            console.log(mac);
-        });
-
         $(function () {
-            if (window.localStorage.getItem("lstBooks") != null) {
-                var lstBooks = window.localStorage.getItem("lstBooks");
-                console.log(lstBooks)
-                var str = '';
-                for (i = 0; i < lstBooks.length; i++) {
-                    var imgURL = '';
-                    var captionTitle = '';
-                    var viewButtonHTML = '';
-                    var deleteButtonHTML = '';
-                    
-                    if (lstBooks[i] == "1") {
-                        imgURL = 'PDF/1.jpg';
-                        captionTitle = 'Account';
-                        viewButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf\')" class="btn btn-success">VIEW BOOK</button>';
-                        deleteButtonHTML = ' <button onclick="remove(1)" class="btn btn-danger">REMOVE BOOK</button>';
-                    }
-                    else if (lstBooks[i] == "2") {
-                        imgURL = 'PDF/2.jpg';
-                        captionTitle = 'Economics';
-                        viewButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-103.pdf\')" class="btn btn-success">VIEW BOOK</button>';
-                        deleteButtonHTML = ' <button onclick="remove(2)" class="btn btn-danger">REMOVE BOOK</button>';
-                    }
-                    else if (lstBooks[i] == "3") {
-                        imgURL = 'PDF/3.jpg';
-                        captionTitle = 'State';
-                        viewButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-103.pdf\')" class="btn btn-success">VIEW BOOK</button>';
-                        deleteButtonHTML = ' <button onclick="remove(3)" class="btn btn-danger">REMOVE BOOK</button>';
-                    }
-                    else if (lstBooks[i] == "4") {
-                        imgURL = 'PDF/4.jpg';
-                        captionTitle = 'Account';
-                        viewButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-103.pdf\')" class="btn btn-success">VIEW BOOK</button>';
-                        deleteButtonHTML = ' <button onclick="remove(4)" class="btn btn-danger">REMOVE BOOK</button>';
-                    }
-                    else if (lstBooks[i] == "5") {
-                        imgURL = 'PDF/5.jpg';
-                        captionTitle = 'BA';
-                        viewButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-203.pdf\')" class="btn btn-success">VIEW BOOK</button>';
-                        deleteButtonHTML = ' <button onclick="remove(5)" class="btn btn-danger">REMOVE BOOK</button>';
-                    }
-                    else if (lstBooks[i] == "6") {
-                        imgURL = 'PDF/6.jpg';
-                        captionTitle = 'Account';
-                        viewButtonHTML = '<button onclick="openPDf(\'http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf\')" class="btn btn-success">VIEW BOOK</button>';
-                        deleteButtonHTML = ' <button onclick="remove(6)" class="btn btn-danger">REMOVE BOOK</button>';
-                    }
-                    else if (lstBooks[i] == "7") {
-                        imgURL = 'PDF/7.jpg';
-                        captionTitle = 'Economics';
-                        viewButtonHTML = '<button onclick="openVIDEO(\'https://a2.udemycdn.com/2013-01-08_09-02-17-ba289ed428cbfd72d4725da8f238d314/WebHD_720p.mp4?nva=20190808190212&token=0b0163a7eb2838980b53e\')" class="btn btn-success">VIEW VIDEO</button>';
-                        deleteButtonHTML = ' <button onclick="remove(7)" class="btn btn-danger">REMOVE VIDEO</button>';
-                    }
-                    else if (lstBooks[i] == "8") {
-                        imgURL = 'PDF/8.jpg';
-                        captionTitle = 'Physics';
-                        viewButtonHTML = '<button onclick="openVIDEO(\'https://a2.udemycdn.com/2016-06-05_18-14-59-a6322d1b4977d0f8f1546755badb37b4/WebHD_720p.mp4?nva=20190808193538&token=062cbf485ebf352228850\')" class="btn btn-success">VIEW VIDEO</button>';
-                        deleteButtonHTML = ' <button onclick="remove(8)" class="btn btn-danger">REMOVE VIDEO</button>';
-                    }
-                    else if (lstBooks[i] == "9") {
-                        imgURL = 'PDF/9.jpg';
-                        captionTitle = 'Physics';
-                        viewButtonHTML = '<button onclick="openVIDEO(\'https://a2.udemycdn.com/2013-01-08_09-02-17-ba289ed428cbfd72d4725da8f238d314/WebHD_720p.mp4?nva=20190808190212&token=0b0163a7eb2838980b53e\')" class="btn btn-success">VIEW VIDEO</button>';
-                        deleteButtonHTML = ' <button onclick="remove(9)" class="btn btn-danger">REMOVE VIDEO</button>';
-                    }
-                    else if (lstBooks[i] == "10") {
-                        imgURL = 'PDF/10.jpg';
-                        captionTitle = 'Computer';
-                        viewButtonHTML = '<button onclick="openVIDEO(\'https://a2.udemycdn.com/2016-06-05_18-14-59-a6322d1b4977d0f8f1546755badb37b4/WebHD_720p.mp4?nva=20190808193538&token=062cbf485ebf352228850\')" class="btn btn-success">VIEW VIDEO</button>';
-                        deleteButtonHTML = ' <button onclick="remove(10)" class="btn btn-danger">REMOVE VIDEO</button>';
-                    }
+            var id = '';
+            var imgURL = '';
+            var captionTitle = '';
+            var detail = '';
+            var price = '';
 
-                    if (lstBooks[i] != ",") {
-                        str = str + '<div class="col-sm-6 col-md-3">';
-                        str = str + '<div class="thumbnail">';
-                        str = str + '<img src="' + imgURL + '" style="height: 300px; width: 250px;" />';
-                        str = str + '<div class="caption">';
-                        str = str + '<h3>' + captionTitle + '</h3>';
-                        str = str + '<p>This is a demo pdf file</p>';
-                        str = str + '<p>' + viewButtonHTML + deleteButtonHTML + '</p>';
-                        str = str + '</div></div></div>';
-                    }
-                }
-
-                $(".lstBooks").html(str);
+            if (window.localStorage.getItem("boodDetailID") != null) {
+                id = window.localStorage.getItem("boodDetailID");
             }
+
+            if (id == "1") {
+                imgURL = 'PDF/1.jpg';
+                captionTitle = 'Account';
+                detail = 'This is a demo pdf file';
+                price = '$500';
+            }
+            else if (id == "2") {
+                imgURL = 'PDF/2.jpg';
+                captionTitle = 'Economics';
+                detail = 'This is a demo pdf file';
+                price = '$400';
+            }
+            else if (id == "3") {
+                imgURL = 'PDF/3.jpg';
+                captionTitle = 'State';
+                detail = 'This is a demo pdf file';
+                price = '$300';
+            }
+            else if (id == "4") {
+                imgURL = 'PDF/4.jpg';
+                captionTitle = 'Account';
+                detail = 'This is a demo pdf file';
+                price = '$60';
+            }
+            else if (id == "5") {
+                imgURL = 'PDF/5.jpg';
+                captionTitle = 'BA';
+                detail = 'This is a demo pdf file';
+                price = '$50';
+            }
+            else if (id == "6") {
+                imgURL = 'PDF/6.jpg';
+                captionTitle = 'Account';
+                detail = 'This is a demo pdf file';
+                price = '$40';
+            }
+            else if (id == "7") {
+                imgURL = 'PDF/7.jpg';
+                captionTitle = 'Economics';
+                detail = 'This is a demo pdf file';
+                price = '$30';
+            }
+            else if (id == "8") {
+                imgURL = 'PDF/8.jpg';
+                captionTitle = 'Physics';
+                detail = 'This is a demo pdf file';
+                price = '$20';
+            }
+            else if (id == "9") {
+                imgURL = 'PDF/9.jpg';
+                captionTitle = 'Physics';
+                detail = 'This is a demo pdf file';
+                price = '$120';
+            }
+            else if (id == "10") {
+                imgURL = 'PDF/10.jpg';
+                captionTitle = 'Computer';
+                detail = 'This is a demo pdf file';
+                price = '$100';
+            }
+
+            var str = '<div class="wrapper row">';
+            str = str + '<div class="preview col-md-4">';
+            str = str + '<img src="' + imgURL + '" style="height: 500px; width: 350px;" />';
+            str = str + '</div>';
+            str = str + '<div class="details col-md-8">';
+            str = str + '<h3 class="product-title">' + captionTitle + '</h3>';
+            str = str + '<p class="product-description">' + detail + '</p>';
+            str = str + '<h4 class="price">Currunt Price: <span>' + price + '</span></h4>';
+            str = str + '<div class="action">';
+            str = str + '<button class="btn btn-primary">PAY</button>';
+            str = str + '</div>';
+            str = str + '</div>';
+            str = str + '</div>';
+
+            $("#loadBookDetail").html(str);
         });
-
-        function openPDf(url) {
-            const { BrowserWindow } = require('electron').remote
-            const PDFWindow = require('electron-pdf-window')
-            const win = new BrowserWindow({ width: 1600, height: 900 })
-            PDFWindow.addSupport(win)
-            win.loadURL(url)
-        }
-
-        function openVIDEO(url) {
-            window.localStorage.setItem("linkURL", url);
-
-            window.location.href = "videoplayer.html";
-        }
-
-        function remove(bookID) {
-            alert(bookID);
-        }
 
         $(document).ready(function () {
             $('#aAll').click(function (e) {
                 e.preventDefault();
-
                 window.location.href = "main.html";
             });
 
             $('#aBuy').click(function (e) {
                 e.preventDefault();
-
                 window.location.href = "main.html";
             });
 
             $('#aSample').click(function (e) {
                 e.preventDefault();
-
                 window.location.href = "download.html";
             });
         });

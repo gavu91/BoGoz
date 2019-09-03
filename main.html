@@ -69,7 +69,7 @@
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a href="#" id="aLogo"><img src="logo.png" alt="Logo" /></a>
+                <a href="#" class="aLogo"><img src="logo.png" alt="Logo" /></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -77,7 +77,7 @@
                         <a href="#" style="font-size: 24px; font-weight: bolder;">BYGOZ E-LEARNING PRIVATE LIMITED</a>
                     </li>
                     <li>
-                        <a href="#" id="aLogo" data-close="true">
+                        <a href="#" class="aLogo" data-close="true">
                             <i class="material-icons">home</i>
                         </a>
                     </li>
@@ -243,10 +243,8 @@
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <!-- <button
-                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
-                                                    class="btn btn-success">VIEW BOOK</button> -->
-                                                <button onclick="download('1')" class="btn btn-success"> BUY
+                                                <button onclick="buy('1')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('1')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -261,10 +259,8 @@
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <!-- <button
-                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-103.pdf')"
-                                                    class="btn btn-success">VIEW BOOK</button> -->
-                                                <button onclick="download('2')" class="btn btn-success"> BUY
+                                                <button onclick="buy('2')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('2')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -279,10 +275,8 @@
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <!-- <button
-                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-205.pdf')"
-                                                    class="btn btn-success">VIEW BOOK</button> -->
-                                                <button onclick="download('L')" class="btn btn-success"> BUY
+                                                <button onclick="buy('3')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('3')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -297,10 +291,8 @@
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <!-- <button
-                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
-                                                    class="btn btn-success">VIEW BOOK</button> -->
-                                                <button onclick="download('L')" class="btn btn-success"> BUY
+                                                <button onclick="buy('4')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('4')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -318,10 +310,8 @@
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <!-- <button
-                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-203.pdf')"
-                                                    class="btn btn-success">VIEW BOOK</button> -->
-                                                <button onclick="download('5')" class="btn btn-success"> BUY
+                                                <button onclick="buy('5')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('5')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -336,10 +326,8 @@
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <!-- <button
-                                                    onclick="openPDf('http://www.ddegjust.ac.in/studymaterial/bba/bba-104.pdf')"
-                                                    class="btn btn-success">VIEW BOOK</button> -->
-                                                <button onclick="download('6')" class="btn btn-success"> BUY
+                                                <button onclick="buy('6')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('6')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -357,10 +345,8 @@
                                                 This is a demo video file
                                             </p>
                                             <p>
-                                                <!-- <button
-                                                    onclick="openVIDEO('https://a2.udemycdn.com/2013-01-08_09-02-17-ba289ed428cbfd72d4725da8f238d314/WebHD_720p.mp4?nva=20190808190212&token=0b0163a7eb2838980b53e')"
-                                                    class="btn btn-success">VIEW VIDEO</button> -->
-                                                <button onclick="download('7')" class="btn btn-success"> BUY
+                                                <button onclick="buy('7')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('7')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -375,10 +361,8 @@
                                                 This is a demo video file
                                             </p>
                                             <p>
-                                                <!-- <button
-                                                    onclick="openVIDEO('https://a2.udemycdn.com/2016-06-05_18-14-59-a6322d1b4977d0f8f1546755badb37b4/WebHD_720p.mp4?nva=20190808193538&token=062cbf485ebf352228850')"
-                                                    class="btn btn-success">VIEW VIDEO</button> -->
-                                                <button onclick="download('8')" class="btn btn-success"> BUY
+                                                <button onclick="buy('8')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('8')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -396,8 +380,8 @@
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <!-- <button onclick="openPDf()" class="btn btn-success">VIEW BOOK</button> -->
-                                                <button onclick="download('L')" class="btn btn-success"> BUY
+                                                <button onclick="buy('9')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('9')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -412,8 +396,8 @@
                                                 This is a demo pdf file
                                             </p>
                                             <p>
-                                                <!-- <button onclick="openPDf()" class="btn btn-success">VIEW BOOK</button> -->
-                                                <button onclick="download('L')" class="btn btn-success"> BUY
+                                                <button onclick="buy('10')" class="btn btn-primary">BUY</button>
+                                                <button onclick="download('10')" class="btn btn-success"> DOWNLOAD
                                                 </button>
                                             </p>
                                         </div>
@@ -436,6 +420,7 @@
     <script src="THEME/js/admin.js"></script>
     <script src="THEME/js/demo.js"></script>
     <script src="THEME/js/custom.js"></script>
+
     <script>
         const electron = require('electron');
         const { ipcRenderer } = electron;
@@ -445,60 +430,45 @@
             console.log(mac);
         });
 
-        function openPDf(url) {
-            const { BrowserWindow } = require('electron').remote
-            const PDFWindow = require('electron-pdf-window')
-            const win = new BrowserWindow({ width: 1600, height: 900 })
-            PDFWindow.addSupport(win)
-            win.loadURL(url)
-        }
-
-        function openVIDEO(url) {
-            window.localStorage.setItem("linkURL", url); 
-            window.location.href = "videoplayer.html";
-        }
-
-        function uniqueList(lst) {
-            var res = [];
-            $.each(lst, function (i, e) {
-                if ($.inArray(e, res) == -1) res.push(e);
-            });
-            return res;
-        }
+        // function uniqueList(lst) {
+        //     var res = [];
+        //     $.each(lst, function (i, e) {
+        //         if ($.inArray(e, res) == -1) res.push(e);
+        //     });
+        //     return res;
+        // }
 
         var lstBooks = [];
         function download(id) {
-            if (id == 'L') {
-                window.location.href = "login.html";
-            }
-            else {
-                if (window.localStorage.getItem("lstBooks") != null) {
-                    var lstOldBooks = window.localStorage.getItem("lstBooks");
-                    lstBooks.push(lstOldBooks);
-                }
-                else {
+            // if (window.localStorage.getItem("lstBooks") != null) {
+            //     var lstOldBooks = window.localStorage.getItem("lstBooks");
+            //     lstBooks.push(lstOldBooks);
+            // }
+            lstBooks.push(id.toString());
+            //lstBooks = uniqueList(lstBooks);
+            window.localStorage.setItem("lstBooks", lstBooks);
+            //window.localStorage.removeItem("lstBooks");
+            alert("Books successfully downloaded.");
+        }
 
-                } 
-                lstBooks.push(id); 
-                lstBooks = uniqueList(lstBooks); 
-                window.localStorage.setItem("lstBooks", lstBooks); 
-                alert("Books successfully downloaded.");
-            }
+        function buy(id) {
+            window.localStorage.setItem("boodDetailID", id);
+            window.location.href = "bookdetail.html";
         }
 
         $(document).ready(function () {
             $('#aAll').click(function (e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 window.location.href = "main.html";
             });
 
             $('#aBuy').click(function (e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 window.location.href = "main.html";
             });
 
             $('#aSample').click(function (e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 window.location.href = "download.html";
             });
 
@@ -509,7 +479,7 @@
             });
 
             $(".clsCategory").click(function () {
-                var categoryID = $(this).data("cid"); 
+                var categoryID = $(this).data("cid");
                 if (categoryID == 1) {
                     $(".linkCategory").css("display", "none");
                     $("#linkCategory1").css("display", "block");
