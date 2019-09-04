@@ -203,9 +203,9 @@
             console.log(mac);
         });
 
-        $(function () {
+        function bindDownloads(){
             if (window.localStorage.getItem("lstBooks") != null) {
-                var lstBooks = window.localStorage.getItem("lstBooks");
+                var lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
                 console.log(lstBooks)
                 var str = '';
                 for (i = 0; i < lstBooks.length; i++) {
@@ -289,7 +289,12 @@
 
                 $(".lstBooks").html(str);
             }
-        });
+        
+        }
+
+        $(function () {
+            bindDownloads();
+            });
 
         function openPDf(url) {
             const { BrowserWindow } = require('electron').remote
@@ -306,7 +311,12 @@
         }
 
         function remove(bookID) {
-            alert(bookID);
+            var lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
+            var filtered = lstBooks.filter(function(value){ 
+                    return value != bookID; 
+                });
+            window.localStorage.setItem("lstBooks", JSON.stringify(filtered)); 
+            bindDownloads(); 
         }
 
         $(document).ready(function () {

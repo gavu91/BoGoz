@@ -4,7 +4,7 @@ const url = require('url');
 const { app, BrowserWindow, Menu, ipcMain,dialog } = electron;
 
 let mainWindow; 
-let directQuit = 1;
+var directExit = false;
 // SET ENV
 process.env.NODE_ENV = 'development';
 
@@ -18,8 +18,27 @@ app.on('ready', function () {
     slashes: true
   }));
  
+
   mainWindow.on('close', function (e) { 
-     preventClose(e);
+    //  preventClose(e);  
+    if(!directExit){
+      var choice = dialog.showMessageBox({
+        type: 'question',
+        buttons: ['Yes', 'No'],
+        title: 'Confirm',
+        message: 'Are you sure you want to quit?'
+      });
+       
+      if(choice == 0){
+        mainWindow = null;
+        app.exit();
+      }  
+      else{
+        if(e != null && e != undefined)
+          e.preventDefault();
+      } 
+    }
+   
   });
 
   // Build menu from template
@@ -28,21 +47,23 @@ app.on('ready', function () {
   Menu.setApplicationMenu(mainMenu);
 }); 
 
-function preventClose(e) {  
-  var choice = dialog.showMessageBox({
-    type: 'question',
-    buttons: ['Yes', 'No'],
-    title: 'Confirm',
-    message: 'Are you sure you want to quit?'
-  });
-   
-  if(choice == 0){
-    app.quit();
-  }  
-  else{
-    if(e != null && e != undefined)
-      e.preventDefault();
-  }
+function preventClose(e) {   
+    var choice = dialog.showMessageBox({
+      type: 'question',
+      buttons: ['Yes', 'No'],
+      title: 'Confirm',
+      message: 'Are you sure you want to quit?'
+    });
+     
+    if(choice == 0){
+      directExit = true;
+      app.quit();
+    }  
+    else{
+      directExit = false;
+      if(e != null && e != undefined)
+        e.preventDefault();
+    } 
 };
 
 // Create menu template
@@ -54,6 +75,7 @@ const mainMenuTemplate = [
         label: 'Exit',
         accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
         click() {   
+          directExit = true;
           preventClose();
         }
       }
