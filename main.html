@@ -424,45 +424,29 @@
     <script>
         const electron = require('electron');
         const { ipcRenderer } = electron;
-        var macaddress = require('macaddress'); 
+        var macaddress = require('macaddress');
 
         macaddress.one(function (err, mac) {
             console.log(mac);
         });
 
-        // function uniqueList(lst) {
-        //     var res = [];
-        //     $.each(lst, function (i, e) {
-        //         if ($.inArray(e, res) == -1) res.push(e);
-        //     });
-        //     return res;
-        // }
-
         var lstBooks = [];
-        // window.localStorage.removeItem("lstBooks")
         function download(id) {
-            // if (window.localStorage.getItem("lstBooks") != null) {
-            //     var lstOldBooks = window.localStorage.getItem("lstBooks");
-            //     lstBooks.push(lstOldBooks);
-            // }
-            lstBooks =JSON.parse(window.localStorage.getItem("lstBooks")) || [];
-            var filtered = lstBooks.filter(function(value){ 
-                    return value == id; 
-                });
-         
-            if(filtered.length > 0){ 
+            lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
+            var filtered = lstBooks.filter(function (value) {
+                return value == id;
+            });
+
+            if (filtered.length > 0) {
                 alert("Book is already in demos.");
             }
-            else{
+            else {
                 lstBooks.push(id.toString());
                 window.localStorage.setItem("lstBooks", JSON.stringify(lstBooks));
                 alert("Books successfully downloaded.");
             }
-            // 
-            // //lstBooks = uniqueList(lstBooks);
-            // 
-            // //window.localStorage.removeItem("lstBooks");
-            // 
+
+            //window.localStorage.removeItem("lstBooks")
         }
 
         function buy(id) {
