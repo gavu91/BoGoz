@@ -48,7 +48,7 @@
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a href="#" class="aLogo"><img src="logo.png" alt="Logo" /></a>
+                <a href="#" class="lnkHome"><img src="logo.png" alt="Logo" /></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -56,7 +56,7 @@
                         <a href="#" style="font-size: 24px; font-weight: bolder;">BYGOZ E-LEARNING PRIVATE LIMITED</a>
                     </li>
                     <li>
-                        <a href="#" class="aLogo" data-close="true">
+                        <a href="#" class="lnkHome" data-close="true">
                             <i class="material-icons">home</i>
                         </a>
                     </li>
@@ -68,7 +68,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#" id="mLogin">
+                        <a href="#" class="lnkLogin">
                             <i class="material-icons">shopping_cart</i>
                             <span>Bygoz Store</span>
                         </a>
@@ -91,10 +91,10 @@
                                         <br />
                                         <form action="#">
                                             <input type="text" id="txtUsername" class="form-control"
-                                                placeholder="Username" />
+                                                placeholder="Username *" />
                                             <br />
                                             <input type="password" id="txtPassword" class="form-control"
-                                                placeholder="Password" />
+                                                placeholder="Password *" />
                                             <br />
                                             <button type="submit" id="btnLogin" class="btn btn-success"
                                                 style="width: 100%;">SIGN IN</button>
@@ -123,15 +123,19 @@
     <script src="THEME/js/custom.js"></script>
     <script>
         $(document).ready(function () {
+            var getMacAddress = '';
+            if (window.localStorage.getItem("getMacAddress") != null) {
+                getMacAddress = window.localStorage.getItem("getMacAddress");
+            }
+            console.log(getMacAddress)
+
             $("#aSignUp").click(function (e) {
                 e.preventDefault();
-
                 window.location.href = "register.html";
             });
 
             $("#aForgotPassword").click(function (e) {
                 e.preventDefault();
-
                 window.location.href = "forgotpassword.html";
             });
 
@@ -139,20 +143,26 @@
                 e.preventDefault();
 
                 if ($("#txtUsername").val() != "" && $("#txtUsername").val() != null && $("#txtUsername").val() != undefined && $("#txtPassword").val() != "" && $("#txtPassword").val() != null && $("#txtPassword").val() != undefined) {
-                    if ($("#txtUsername").val() == "bygoz" && $("#txtPassword").val() == "123456") {
-                        window.localStorage.setItem("isAuthenticate", "Yes");
-                        window.localStorage.setItem("Username", $("#txtUsername").val());
-                        window.localStorage.setItem("Password", $("#txtPassword").val());
-                        window.location.href = "index.html";
-                    }
-                    else {
-                        toastr.options.positionClass = "toast-bottom-left";
-                        toastr.error('Username or password are wrong.', 'Invalid');
-                    }
+                    // $.post(apiUrl + "login", { "device_id": getMacAddress, "email": $("#txtUsername").val(), "password": $("#txtPassword").val() }, function (data) {
+                    //     if (data.status === true) {
+                            
+                    //     }
+                    //     else {
+                    //         alert(data.message);
+                    //     }
+                    // });
+
+                    // if ($("#txtUsername").val() == "bygoz" && $("#txtPassword").val() == "123456") {
+                    //     window.localStorage.setItem("isAuthenticate", "Yes");
+                    //     window.localStorage.setItem("UserID", $("#txtUsername").val());
+                    //     window.location.href = "main.html";
+                    // }
+                    // else {
+                    //     alert('Username or password are wrong.');
+                    // }
                 }
                 else {
-                    toastr.options.positionClass = "toast-bottom-left";
-                    toastr.error('Please enter Username and Password.', 'Required');
+                    alert('Please enter username and password.');
                 }
             });
         });

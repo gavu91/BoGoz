@@ -1,23 +1,28 @@
 const apiUrl = 'http://www.bygoz.com/public/api/';
 
-$.get(apiUrl + 'category_list').then((data)=>{
-    console.log(data);
-});
+$(document).ready(function () {
+    $('.lnkHome').click(function (e) {
+        e.preventDefault();
+        window.location.href = "main.html";
+    });
 
-$(".aLogo").click(function (e) {
-    e.preventDefault();
-    
-    window.location.href = "main.html";
-});
+    $('.lnkStore').click(function (e) {
+        e.preventDefault();
+        window.location.href = "main.html";
+    });
 
-$("#mLogin").click(function (e) {
-    e.preventDefault();
+    $('.lnkLibrary').click(function (e) {
+        e.preventDefault();
+        window.location.href = "download.html";
+    });
 
-    window.location.href = "login.html";
-});
+    $('.lnkPurchase').click(function (e) {
+        e.preventDefault();
+        window.location.href = "download.html";
+    });
 
-$("#aLogin").click(function (e) {
-    e.preventDefault();
-
-    window.location.href = "login.html";
+    $(".lnkLogin").click(function (e) {
+        e.preventDefault();
+        window.location.href = "login.html";
+    });
 });
