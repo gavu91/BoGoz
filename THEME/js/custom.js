@@ -6,14 +6,14 @@ $(document).ready(function () {
         window.location.href = "main.html";
     });
 
-    $('.lnkStore').click(function (e) {
-        e.preventDefault();
-        window.location.href = "main.html";
-    });
-
     $('.lnkLibrary').click(function (e) {
         e.preventDefault();
         window.location.href = "download.html";
+    });
+
+    $('.lnkStore').click(function (e) {
+        e.preventDefault();
+        window.location.href = "store.html";
     });
 
     $('.lnkPurchase').click(function (e) {
