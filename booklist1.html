@@ -46,17 +46,17 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="javascript:;navbar-collapse" aria-expanded="false"></a>
+                    data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a href="javascript:;" class="lnkHome"><img src="logo.png" alt="Logo" /></a>
+                <a href="#" class="lnkHome"><img src="logo.png" alt="Logo" /></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="javascript:;" style="font-size: 24px; font-weight: bolder;">BYGOZ E-LEARNING PRIVATE LIMITED</a>
+                        <a href="#" style="font-size: 24px; font-weight: bolder;">BYGOZ E-LEARNING PRIVATE LIMITED</a>
                     </li>
                     <li>
-                        <a href="javascript:;" class="lnkHome" data-close="true">
+                        <a href="#" class="lnkHome" data-close="true">
                             <i class="material-icons">home</i>
                         </a>
                     </li>
@@ -68,7 +68,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="javascript:;" class="lnkLogin">
+                        <a href="#" class="lnkLogin">
                             <i class="material-icons">shopping_cart</i>
                             <span>Bygoz Store</span>
                         </a>
@@ -82,7 +82,7 @@
             <div class="menu">
                 <ul class="list">
                     <li>
-                        <a href="javascript:;" class="lnkHome">
+                        <a href="#" class="lnkHome">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
@@ -90,7 +90,7 @@
                     </li>
 
                     <li>
-                        <a href="javascript:;" class="lnkLibrary">
+                        <a href="#" class="lnkLibrary">
                             <i class="material-icons">account_balance</i>
                             <span>Library</span>
                         </a>
@@ -98,7 +98,7 @@
                     </li>
 
                     <li>
-                        <a href="javascript:;" class="lnkStore">
+                        <a href="#" class="lnkStore">
                             <i class="material-icons">store</i>
                             <span>Store</span>
                         </a>
@@ -130,96 +130,44 @@
     <script src="THEME/js/custom.js"></script>
 
     <script>
-        function redirectToBooklist1(detail){
-            window.localStorage.removeItem("Books");
-            window.localStorage.setItem("Books",detail);
-            window.location.href="booklist1.html";
-        }
-
-        function openPDf(url) {
-            window.localStorage.removeItem("pdfUrl");
-            window.localStorage.setItem("pdfUrl",url);
-            const { BrowserWindow } = require('electron').remote
-            var remote = require('electron').remote;
-            var currentWindow = remote.getCurrentWindow(); 
-            const win = new BrowserWindow({ width: 1600, height: 900, parent: currentWindow })
-            win.setMenu(null); 
-            win.loadFile('viewer.html')
-        }
-
-        function download(id) {
-            lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
-            var filtered = lstBooks.filter(function (value) {
-                return value == id;
-            });
-
-            if (filtered.length > 0) {
-                alert("Book is already in demos.");
-            }
-            else {
-                lstBooks.push(id.toString());
-                window.localStorage.setItem("lstBooks", JSON.stringify(lstBooks));
-                alert("Books successfully downloaded.");
-            }
-
-            //window.localStorage.removeItem("lstBooks")
-        }
         $(function () {
             var macaddress = require('macaddress');
             macaddress.one(function (err, mac) {
                 window.localStorage.setItem("getMacAddress", mac);
             });
-
+            var booksItem = window.localStorage.getItem("Books");
             $.post(apiUrl + "dashboard_detail", { type: "", page_index: 0, user_id: 0 }, function (data) {
                 if (data.status === true) {
-                    var lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
                     // Top Newest Books
                     var strTopNewBook = '';
                     var arrTopNewBook = data.top_search_book;
 
-                    strTopNewBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strTopNewBook = strTopNewBook + '<h4 style="color: javascript:;03A9F4;">TOP NEWEST BOOKS <a href="javascript:;" onclick="redirectToBooklist1(\'Top Newest\')" style="float: right;"> MORE ></a></h4></div>';
-                    for (i = 0; i < arrTopNewBook.length; i++) {
-                        if (i == 4) {
-                            break;
-                        }
-                        var filtered = lstBooks.filter(function (value) {
-                                        return value == arrTopNewBook[i].book_id;
-                                    });
-
+                    if(booksItem == "Top Newest"){
+                        strTopNewBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                    strTopNewBook = strTopNewBook + '<h4 style="color: #03A9F4;">TOP NEWEST BOOKS</h4></div>';
+                    for (i = 0; i < arrTopNewBook.length; i++) { 
                         var imgPath = "http://bygoz.com/public/uploads/book/front_cover/" + arrTopNewBook[i].front_cover;
 
                         strTopNewBook = strTopNewBook + '<div class="col-md-3"><div class="thumbnail">';
                         strTopNewBook = strTopNewBook + '<img src="' + imgPath + '" style="height: 300px; width: 250px;" />';
                         strTopNewBook = strTopNewBook + '<div class="caption">';
                         strTopNewBook = strTopNewBook + '<h3>' + arrTopNewBook[i].name + '</h3>';
-                        if(filtered.length > 0){
-                            strTopNewBook = strTopNewBook + '<p><button onclick="openPDf(\''+arrTopNewBook[i].file_path+'\')" class="btn btn-success">View Book</button>';
-                        }
-                        else{
-                            strTopNewBook = strTopNewBook + '<p><button onclick="download('+arrTopNewBook[i].book_id+')" class="btn btn-success">DOWNLOAD</button>';
-                        }
-                        strTopNewBook = strTopNewBook + ' <button onclick="javascript:;" class="btn btn-primary">BUY NOW</button></p>';
+                        strTopNewBook = strTopNewBook + '<p><button onclick="#" class="btn btn-success">DOWNLOAD</button>';
+                        strTopNewBook = strTopNewBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
                         strTopNewBook = strTopNewBook + '</div></div></div>';
                     }
                     strTopNewBook = strTopNewBook + '</div></div></div>';
 
                     $(".bindDashboardData").append(strTopNewBook);
-
-                    // Popular Books
-                    var strPopularBook = '';
+                    }
+                    else if(booksItem == "POPULAR"){
+  // Popular Books
+  var strPopularBook = '';
                     var arrPopularBook = data.popular_book;
 
                     strPopularBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strPopularBook = strPopularBook + '<h4 style="color: javascript:;03A9F4;">POPULAR BOOKS <a href="javascript:;" onclick="redirectToBooklist1(\'POPULAR\')" style="float: right;"> MORE ></a></h4></div>';
-                    for (i = 0; i < arrPopularBook.length; i++) {
-                        if (i == 4) {
-                            break;
-                        }
-
-                        var filtered = lstBooks.filter(function (value) {
-                                        return value == arrPopularBook[i].book_id;
-                                    });
+                    strPopularBook = strPopularBook + '<h4 style="color: #03A9F4;">POPULAR BOOKS </h4></div>';
+                    for (i = 0; i < arrPopularBook.length; i++) { 
 
                         var imgPath = "http://bygoz.com/public/uploads/book/front_cover/" + arrPopularBook[i].front_cover;
 
@@ -227,83 +175,61 @@
                         strPopularBook = strPopularBook + '<img src="' + imgPath + '" style="height: 300px; width: 250px;" />';
                         strPopularBook = strPopularBook + '<div class="caption">';
                         strPopularBook = strPopularBook + '<h3>' + arrPopularBook[i].name + '</h3>';
-                        if(filtered.length > 0){
-                            strPopularBook = strPopularBook + '<p><button onclick="openPDf(\''+arrPopularBook[i].file_path+'\')" class="btn btn-success">View Book</button>';
-                        }
-                        else{
-                            strPopularBook = strPopularBook + '<p><button onclick="download('+arrPopularBook[i].book_id+')" class="btn btn-success">DOWNLOAD</button>';
-                        }
-                        strPopularBook = strPopularBook + ' <button onclick="javascript:;" class="btn btn-primary">BUY NOW</button></p>';
+                        strPopularBook = strPopularBook + '<p><button onclick="#" class="btn btn-success">DOWNLOAD</button>';
+                        strPopularBook = strPopularBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
                         strPopularBook = strPopularBook + '</div></div></div>';
                     }
                     strPopularBook = strPopularBook + '</div></div></div>';
 
                     $(".bindDashboardData").append(strPopularBook);
 
-                    // Recommended Books
-                    var strRecommendedBook = '';
+                    }
+                    else if(booksItem == "RECOMMENDED"){
+ // Recommended Books
+ var strRecommendedBook = '';
                     var arrRecommendedBook = data.recommended_book;
 
                     strRecommendedBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strRecommendedBook = strRecommendedBook + '<h4 style="color: javascript:;03A9F4;">RECOMMENDED BOOKS <a href="javascript:;"  onclick="redirectToBooklist1(\'RECOMMENDED\')" style="float: right;"> MORE ></a></h4></div>';
-                    for (i = 0; i < arrRecommendedBook.length; i++) {
-                        if (i == 4) {
-                            break;
-                        } 
-                        var filtered = lstBooks.filter(function (value) {
-                                        return value == arrRecommendedBook[i].book_id;
-                                    });
-
+                    strRecommendedBook = strRecommendedBook + '<h4 style="color: #03A9F4;">RECOMMENDED BOOKS </h4></div>';
+                    for (i = 0; i < arrRecommendedBook.length; i++) { 
                         var imgPath = "http://bygoz.com/public/uploads/book/front_cover/" + arrRecommendedBook[i].front_cover;
 
                         strRecommendedBook = strRecommendedBook + '<div class="col-md-3"><div class="thumbnail">';
                         strRecommendedBook = strRecommendedBook + '<img src="' + imgPath + '" style="height: 300px; width: 250px;" />';
                         strRecommendedBook = strRecommendedBook + '<div class="caption">';
                         strRecommendedBook = strRecommendedBook + '<h3>' + arrRecommendedBook[i].name + '</h3>';
-                        if(filtered.length > 0){
-                            strRecommendedBook = strRecommendedBook + '<p><button onclick="openPDf(\''+arrRecommendedBook[i].file_path+'\')" class="btn btn-success">View Book</button>';
-                        }
-                        else{
-                            strRecommendedBook = strRecommendedBook + '<p><button onclick="download('+arrRecommendedBook[i].book_id+')" class="btn btn-success">DOWNLOAD</button>';
-                        }
-                        strRecommendedBook = strRecommendedBook + ' <button onclick="javascript:;" class="btn btn-primary">BUY NOW</button></p>';
+                        strRecommendedBook = strRecommendedBook + '<p><button onclick="#" class="btn btn-success">DOWNLOAD</button>';
+                        strRecommendedBook = strRecommendedBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
                         strRecommendedBook = strRecommendedBook + '</div></div></div>';
                     }
                     strRecommendedBook = strRecommendedBook + '</div></div></div>';
 
                     $(".bindDashboardData").append(strRecommendedBook);
 
-                    // Top Selling Books
-                    var strTopSellingBook = '';
+                    }
+                    else if(booksItem == "TOP SELLING"){
+    // Top Selling Books
+    var strTopSellingBook = '';
                     var arrTopSellingBook = data.top_sell_book;
 
                     strTopSellingBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strTopSellingBook = strTopSellingBook + '<h4 style="color: javascript:;03A9F4;">TOP SELLING BOOKS <a href="javascript:;"  onclick="redirectToBooklist1(\'TOP SELLING\')" style="float: right;"> MORE ></a></h4></div>';
-                    for (i = 0; i < arrTopSellingBook.length; i++) {
-                        if (i == 4) {
-                            break;
-                        }
-                        var filtered = lstBooks.filter(function (value) {
-                                        return value == arrTopSellingBook[i].book_id;
-                                    });
+                    strTopSellingBook = strTopSellingBook + '<h4 style="color: #03A9F4;">TOP SELLING BOOKS </h4></div>';
+                    for (i = 0; i < arrTopSellingBook.length; i++) { 
                         var imgPath = "http://bygoz.com/public/uploads/book/front_cover/" + arrTopSellingBook[i].front_cover;
 
                         strTopSellingBook = strTopSellingBook + '<div class="col-md-3"><div class="thumbnail">';
                         strTopSellingBook = strTopSellingBook + '<img src="' + imgPath + '" style="height: 300px; width: 250px;" />';
                         strTopSellingBook = strTopSellingBook + '<div class="caption">';
                         strTopSellingBook = strTopSellingBook + '<h3>' + arrTopSellingBook[i].name + '</h3>';
-                        if(filtered.length > 0){
-                            strTopSellingBook = strTopSellingBook + '<p><button onclick="openPDf(\''+arrTopSellingBook[i].file_path+'\')" class="btn btn-success">View Book</button>';
-                        }
-                        else{
-                            strTopSellingBook = strTopSellingBook + '<p><button onclick="download('+arrTopSellingBook[i].book_id+')" class="btn btn-success">DOWNLOAD</button>';
-                        }
-                        strTopSellingBook = strTopSellingBook + ' <button onclick="javascript:;" class="btn btn-primary">BUY NOW</button></p>';
+                        strTopSellingBook = strTopSellingBook + '<p><button onclick="#" class="btn btn-success">DOWNLOAD</button>';
+                        strTopSellingBook = strTopSellingBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
                         strTopSellingBook = strTopSellingBook + '</div></div></div>';
                     }
                     strTopSellingBook = strTopSellingBook + '</div></div></div>';
 
                     $(".bindDashboardData").append(strTopSellingBook);
+                    }    
+                
                 }
             });
         });

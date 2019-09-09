@@ -1,4 +1,5 @@
 const apiUrl = 'http://www.bygoz.com/public/api/';
+const webUrl = 'http://www.bygoz.com/';
 
 $(document).ready(function () {
     $('.lnkHome').click(function (e) {
@@ -13,12 +14,12 @@ $(document).ready(function () {
 
     $('.lnkLibrary').click(function (e) {
         e.preventDefault();
-        window.location.href = "download.html";
+        window.location.href = "library.html";
     });
 
     $('.lnkPurchase').click(function (e) {
         e.preventDefault();
-        window.location.href = "download.html";
+        window.location.href = "library.html";
     });
 
     $(".lnkLogin").click(function (e) {

@@ -5,7 +5,7 @@
 
   window.WebViewer({
     path: './public/lib',
-    initialDoc: window.localStorage.getItem("pdfUrl"),
+    initialDoc: webUrl + "uploads/book/pdf/" + window.localStorage.getItem("pdfUrl"),
   }, viewerElement).then(instance => {
 
     // Interact with APIs here.

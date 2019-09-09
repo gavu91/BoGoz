@@ -2265,7 +2265,7 @@ dist/bygoz-win32-x64/swiftshader/libEGL.dll
 dist/bygoz-win32-x64/swiftshader/libGLESv2.dll
 dist/bygoz-win32-x64/v8_context_snapshot.bin
 dist/bygoz-win32-x64/version
-download.html
+library.html
 node_modules/.bin/asar
 node_modules/.bin/asar.cmd
 node_modules/.bin/btoa
