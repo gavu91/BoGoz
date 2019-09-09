@@ -115,7 +115,7 @@ define("tinymce/codesampleplugin/Prism", [], function() {
 var window = {};
 // ------------------ Start wrap
 
-/* http://prismjs.com/download.html?themes=prism-dark&languages=markup+css+clike+javascript+c+csharp+cpp+java+php+python+ruby */
+/* http://prismjs.com/library.html?themes=prism-dark&languages=markup+css+clike+javascript+c+csharp+cpp+java+php+python+ruby */
 var _self = (typeof window !== 'undefined')
 	? window   // if in browser
 	: (

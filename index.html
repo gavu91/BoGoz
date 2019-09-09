@@ -429,7 +429,6 @@
         macaddress.one(function (err, mac) {
             console.log(mac);
         });
-
         var lstBooks = [];
         function download(id) {
             lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
@@ -467,7 +466,7 @@
 
             $('#aSample').click(function (e) {
                 e.preventDefault();
-                window.location.href = "download.html";
+                window.location.href = "library.html";
             });
 
             $('.dropdown-submenu a.test').click(function (e) {
