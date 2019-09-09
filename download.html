@@ -296,14 +296,14 @@
         });
 
         function openPDf(url) {
+            window.localStorage.removeItem("pdfUrl");
+            window.localStorage.setItem("pdfUrl",url);
             const { BrowserWindow } = require('electron').remote
             var remote = require('electron').remote;
-            var currentWindow = remote.getCurrentWindow();
-            const PDFWindow = require('electron-pdf-window')
+            var currentWindow = remote.getCurrentWindow(); 
             const win = new BrowserWindow({ width: 1600, height: 900, parent: currentWindow })
-            win.setMenu(null);
-            PDFWindow.addSupport(win)
-            win.loadURL(url)
+            win.setMenu(null); 
+            win.loadFile('viewer.html')
         }
 
         function openVIDEO(url) {
