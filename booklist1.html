@@ -6,8 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>BYGOZ E-LEARNING PRIVATE LIMITED</title>
     <link rel="icon" href="THEME/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
-        type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="THEME/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="THEME/plugins/node-waves/waves.css" rel="stylesheet" />
@@ -45,9 +44,8 @@
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="javascript:void(0);" class="bars"></a>
+                <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="#" class="bars"></a>
                 <a href="#" class="lnkHome"><img src="logo.png" alt="Logo" /></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -58,11 +56,6 @@
                     <li>
                         <a href="#" class="lnkHome" data-close="true">
                             <i class="material-icons">home</i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="js-search" data-close="true">
-                            <i class="material-icons">search</i>
                         </a>
                     </li>
                 </ul>
@@ -84,7 +77,7 @@
                     <li>
                         <a href="#" class="lnkHome">
                             <i class="material-icons">home</i>
-                            <span>Home</span>
+                            <span>HOME</span>
                         </a>
                         <hr style="margin-bottom: 0; margin-top: 0;" />
                     </li>
@@ -92,7 +85,7 @@
                     <li>
                         <a href="#" class="lnkLibrary">
                             <i class="material-icons">account_balance</i>
-                            <span>Library</span>
+                            <span>LIBRARY</span>
                         </a>
                         <hr style="margin-bottom: 0; margin-top: 0;" />
                     </li>
@@ -100,7 +93,79 @@
                     <li>
                         <a href="#" class="lnkStore">
                             <i class="material-icons">store</i>
-                            <span>Store</span>
+                            <span>STORE</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkPurchase">
+                            <i class="material-icons">attach_money</i>
+                            <span>PURCHASE</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkCart">
+                            <i class="material-icons">add_shopping_cart</i>
+                            <span>CART</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkAuthors">
+                            <i class="material-icons">contacts</i>
+                            <span>AUTHORS</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkFavouriteBooks">
+                            <i class="material-icons">bookmarks</i>
+                            <span>FAVOURITE BOOK</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkTranscationHistory">
+                            <i class="material-icons">account_balance_wallet</i>
+                            <span>TRANSCATION HISTORY</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkMyProfile">
+                            <i class="material-icons">account_box</i>
+                            <span>MY PROFILE</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkChangePassword">
+                            <i class="material-icons">settings_applications</i>
+                            <span>CHANGE PASSWORD</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkSellWithUs">
+                            <i class="material-icons">shopping_cart</i>
+                            <span>SELL WITH US</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkLogout">
+                            <i class="material-icons">lock</i>
+                            <span>LOGOUT</span>
                         </a>
                         <hr style="margin-bottom: 0; margin-top: 0;" />
                     </li>
@@ -119,7 +184,12 @@
 
         </div>
     </section>
-    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
     <script src="THEME/plugins/jquery/jquery.min.js"></script>
     <script src="THEME/plugins/bootstrap/js/bootstrap.js"></script>
     <script src="THEME/plugins/bootstrap-select/js/bootstrap-select.js"></script>
@@ -130,112 +200,173 @@
     <script src="THEME/js/custom.js"></script>
 
     <script>
-        $(function () {
-            var macaddress = require('macaddress');
-            macaddress.one(function (err, mac) {
-                window.localStorage.setItem("getMacAddress", mac);
-            });
-            var booksItem = window.localStorage.getItem("Books");
-            $.post(apiUrl + "dashboard_detail", { type: "", page_index: 0, user_id: 0 }, function (data) {
+        var lstBooks = [];
+        var booksItem = "";
+
+        $(function() {
+            $.post(apiUrl + "dashboard_detail", {
+                type: "",
+                page_index: 0,
+                user_id: 0
+            }, function(data) {
                 if (data.status === true) {
-                    // Top Newest Books
-                    var strTopNewBook = '';
-                    var arrTopNewBook = data.top_search_book;
+                    booksItem = window.localStorage.getItem("booksItem");
+                    lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
 
-                    if(booksItem == "Top Newest"){
+                    if (booksItem == "Top Newest") {
+                        var strTopNewBook = '';
+                        var arrTopNewBook = data.top_search_book;
                         strTopNewBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strTopNewBook = strTopNewBook + '<h4 style="color: #03A9F4;">TOP NEWEST BOOKS</h4></div>';
-                    for (i = 0; i < arrTopNewBook.length; i++) { 
-                        var imgPath = "http://bygoz.com/public/uploads/book/front_cover/" + arrTopNewBook[i].front_cover;
+                        strTopNewBook = strTopNewBook + '<h4 style="color: #03A9F4;">TOP NEWEST BOOKS</h4></div>';
 
-                        strTopNewBook = strTopNewBook + '<div class="col-md-3"><div class="thumbnail">';
-                        strTopNewBook = strTopNewBook + '<img src="' + imgPath + '" style="height: 300px; width: 250px;" />';
-                        strTopNewBook = strTopNewBook + '<div class="caption">';
-                        strTopNewBook = strTopNewBook + '<h3>' + arrTopNewBook[i].name + '</h3>';
-                        strTopNewBook = strTopNewBook + '<p><button onclick="#" class="btn btn-success">DOWNLOAD</button>';
-                        strTopNewBook = strTopNewBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
+                        for (i = 0; i < arrTopNewBook.length; i++) {
+                            var filtered = lstBooks.filter(function(value) {
+                                return value == arrTopNewBook[i].book_id;
+                            });
+
+                            strTopNewBook = strTopNewBook + '<div class="col-md-3"><div class="thumbnail">';
+                            strTopNewBook = strTopNewBook + '<img src="' + frontCoverUrl + arrTopNewBook[i].front_cover + '" style="height: 300px; width: 250px;" />';
+                            strTopNewBook = strTopNewBook + '<div class="caption">';
+                            strTopNewBook = strTopNewBook + '<h3>' + arrTopNewBook[i].name + '</h3>';
+
+                            if (filtered.length > 0) {
+                                strTopNewBook = strTopNewBook + '<p><button onclick="openPDf(\'' + arrTopNewBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                            } else {
+                                strTopNewBook = strTopNewBook + '<p><button onclick="download(' + arrTopNewBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
+                            }
+
+                            strTopNewBook = strTopNewBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
+                            strTopNewBook = strTopNewBook + '</div></div></div>';
+                        }
+
                         strTopNewBook = strTopNewBook + '</div></div></div>';
-                    }
-                    strTopNewBook = strTopNewBook + '</div></div></div>';
+                        $(".bindDashboardData").append(strTopNewBook);
+                    } else if (booksItem == "POPULAR") {
+                        var strPopularBook = '';
+                        var arrPopularBook = data.popular_book;
+                        strPopularBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                        strPopularBook = strPopularBook + '<h4 style="color: #03A9F4;">POPULAR BOOKS</h4></div>';
 
-                    $(".bindDashboardData").append(strTopNewBook);
-                    }
-                    else if(booksItem == "POPULAR"){
-  // Popular Books
-  var strPopularBook = '';
-                    var arrPopularBook = data.popular_book;
+                        for (i = 0; i < arrPopularBook.length; i++) {
+                            var filtered = lstBooks.filter(function(value) {
+                                return value == arrPopularBook[i].book_id;
+                            });
 
-                    strPopularBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strPopularBook = strPopularBook + '<h4 style="color: #03A9F4;">POPULAR BOOKS </h4></div>';
-                    for (i = 0; i < arrPopularBook.length; i++) { 
+                            strPopularBook = strPopularBook + '<div class="col-md-3"><div class="thumbnail">';
+                            strPopularBook = strPopularBook + '<img src="' + frontCoverUrl + arrPopularBook[i].front_cover + '" style="height: 300px; width: 250px;" />';
+                            strPopularBook = strPopularBook + '<div class="caption">';
+                            strPopularBook = strPopularBook + '<h3>' + arrPopularBook[i].name + '</h3>';
 
-                        var imgPath = "http://bygoz.com/public/uploads/book/front_cover/" + arrPopularBook[i].front_cover;
+                            if (filtered.length > 0) {
+                                strPopularBook = strPopularBook + '<p><button onclick="openPDf(\'' + arrPopularBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                            } else {
+                                strPopularBook = strPopularBook + '<p><button onclick="download(' + arrPopularBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
+                            }
 
-                        strPopularBook = strPopularBook + '<div class="col-md-3"><div class="thumbnail">';
-                        strPopularBook = strPopularBook + '<img src="' + imgPath + '" style="height: 300px; width: 250px;" />';
-                        strPopularBook = strPopularBook + '<div class="caption">';
-                        strPopularBook = strPopularBook + '<h3>' + arrPopularBook[i].name + '</h3>';
-                        strPopularBook = strPopularBook + '<p><button onclick="#" class="btn btn-success">DOWNLOAD</button>';
-                        strPopularBook = strPopularBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
+                            strPopularBook = strPopularBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
+                            strPopularBook = strPopularBook + '</div></div></div>';
+                        }
+
                         strPopularBook = strPopularBook + '</div></div></div>';
-                    }
-                    strPopularBook = strPopularBook + '</div></div></div>';
+                        $(".bindDashboardData").append(strPopularBook);
+                    } else if (booksItem == "RECOMMENDED") {
+                        var strRecommendedBook = '';
+                        var arrRecommendedBook = data.recommended_book;
+                        strRecommendedBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                        strRecommendedBook = strRecommendedBook + '<h4 style="color: #03A9F4;">RECOMMENDED BOOKS</h4></div>';
 
-                    $(".bindDashboardData").append(strPopularBook);
+                        for (i = 0; i < arrRecommendedBook.length; i++) {
+                            var filtered = lstBooks.filter(function(value) {
+                                return value == arrRecommendedBook[i].book_id;
+                            });
 
-                    }
-                    else if(booksItem == "RECOMMENDED"){
- // Recommended Books
- var strRecommendedBook = '';
-                    var arrRecommendedBook = data.recommended_book;
+                            strRecommendedBook = strRecommendedBook + '<div class="col-md-3"><div class="thumbnail">';
+                            strRecommendedBook = strRecommendedBook + '<img src="' + frontCoverUrl + arrRecommendedBook[i].front_cover + '" style="height: 300px; width: 250px;" />';
+                            strRecommendedBook = strRecommendedBook + '<div class="caption">';
+                            strRecommendedBook = strRecommendedBook + '<h3>' + arrRecommendedBook[i].name + '</h3>';
 
-                    strRecommendedBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strRecommendedBook = strRecommendedBook + '<h4 style="color: #03A9F4;">RECOMMENDED BOOKS </h4></div>';
-                    for (i = 0; i < arrRecommendedBook.length; i++) { 
-                        var imgPath = "http://bygoz.com/public/uploads/book/front_cover/" + arrRecommendedBook[i].front_cover;
+                            if (filtered.length > 0) {
+                                strRecommendedBook = strRecommendedBook + '<p><button onclick="openPDf(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                            } else {
+                                strRecommendedBook = strRecommendedBook + '<p><button onclick="download(' + arrRecommendedBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
+                            }
 
-                        strRecommendedBook = strRecommendedBook + '<div class="col-md-3"><div class="thumbnail">';
-                        strRecommendedBook = strRecommendedBook + '<img src="' + imgPath + '" style="height: 300px; width: 250px;" />';
-                        strRecommendedBook = strRecommendedBook + '<div class="caption">';
-                        strRecommendedBook = strRecommendedBook + '<h3>' + arrRecommendedBook[i].name + '</h3>';
-                        strRecommendedBook = strRecommendedBook + '<p><button onclick="#" class="btn btn-success">DOWNLOAD</button>';
-                        strRecommendedBook = strRecommendedBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
+                            strRecommendedBook = strRecommendedBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
+                            strRecommendedBook = strRecommendedBook + '</div></div></div>';
+                        }
+
                         strRecommendedBook = strRecommendedBook + '</div></div></div>';
-                    }
-                    strRecommendedBook = strRecommendedBook + '</div></div></div>';
+                        $(".bindDashboardData").append(strRecommendedBook);
+                    } else if (booksItem == "TOP SELLING") {
+                        var strTopSellingBook = '';
+                        var arrTopSellingBook = data.top_sell_book;
+                        strTopSellingBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                        strTopSellingBook = strTopSellingBook + '<h4 style="color: #03A9F4;">TOP SELLING BOOKS</h4></div>';
 
-                    $(".bindDashboardData").append(strRecommendedBook);
+                        for (i = 0; i < arrTopSellingBook.length; i++) {
+                            var filtered = lstBooks.filter(function(value) {
+                                return value == arrTopSellingBook[i].book_id;
+                            });
 
-                    }
-                    else if(booksItem == "TOP SELLING"){
-    // Top Selling Books
-    var strTopSellingBook = '';
-                    var arrTopSellingBook = data.top_sell_book;
+                            strTopSellingBook = strTopSellingBook + '<div class="col-md-3"><div class="thumbnail">';
+                            strTopSellingBook = strTopSellingBook + '<img src="' + frontCoverUrl + arrTopSellingBook[i].front_cover + '" style="height: 300px; width: 250px;" />';
+                            strTopSellingBook = strTopSellingBook + '<div class="caption">';
+                            strTopSellingBook = strTopSellingBook + '<h3>' + arrTopSellingBook[i].name + '</h3>';
 
-                    strTopSellingBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strTopSellingBook = strTopSellingBook + '<h4 style="color: #03A9F4;">TOP SELLING BOOKS </h4></div>';
-                    for (i = 0; i < arrTopSellingBook.length; i++) { 
-                        var imgPath = "http://bygoz.com/public/uploads/book/front_cover/" + arrTopSellingBook[i].front_cover;
+                            if (filtered.length > 0) {
+                                strTopSellingBook = strTopSellingBook + '<p><button onclick="openPDf(\'' + arrTopSellingBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                            } else {
+                                strTopSellingBook = strTopSellingBook + '<p><button onclick="download(' + arrTopSellingBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
+                            }
 
-                        strTopSellingBook = strTopSellingBook + '<div class="col-md-3"><div class="thumbnail">';
-                        strTopSellingBook = strTopSellingBook + '<img src="' + imgPath + '" style="height: 300px; width: 250px;" />';
-                        strTopSellingBook = strTopSellingBook + '<div class="caption">';
-                        strTopSellingBook = strTopSellingBook + '<h3>' + arrTopSellingBook[i].name + '</h3>';
-                        strTopSellingBook = strTopSellingBook + '<p><button onclick="#" class="btn btn-success">DOWNLOAD</button>';
-                        strTopSellingBook = strTopSellingBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
+                            strTopSellingBook = strTopSellingBook + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
+                            strTopSellingBook = strTopSellingBook + '</div></div></div>';
+                        }
+
                         strTopSellingBook = strTopSellingBook + '</div></div></div>';
+                        $(".bindDashboardData").append(strTopSellingBook);
                     }
-                    strTopSellingBook = strTopSellingBook + '</div></div></div>';
-
-                    $(".bindDashboardData").append(strTopSellingBook);
-                    }    
-                
                 }
             });
         });
+
+        function openPDf(url) {
+            window.localStorage.removeItem("pdfUrl");
+            window.localStorage.setItem("pdfUrl", url);
+            const {
+                BrowserWindow
+            } = require('electron').remote
+            var remote = require('electron').remote;
+            var currentWindow = remote.getCurrentWindow();
+            const win = new BrowserWindow({
+                width: 1600,
+                height: 900,
+                parent: currentWindow
+            })
+            win.setMenu(null);
+            win.loadFile('viewer.html')
+        }
+
+        function download(id) {
+            lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
+
+            var filtered = lstBooks.filter(function(value) {
+                return value == id;
+            });
+
+            if (filtered.length > 0) {
+                alert("Book is already in demos.");
+            } else {
+                lstBooks.push(id.toString());
+                window.localStorage.setItem("lstBooks", JSON.stringify(lstBooks));
+                alert("Books successfully downloaded.");
+            }
+        }
     </script>
 
-    <script>if (window.module) module = window.module;</script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
 </body>
 
 </html>

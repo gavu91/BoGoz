@@ -6,35 +6,13 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>BYGOZ E-LEARNING PRIVATE LIMITED</title>
     <link rel="icon" href="THEME/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
-        type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="THEME/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="THEME/plugins/node-waves/waves.css" rel="stylesheet" />
     <link href="THEME/plugins/animate-css/animate.css" rel="stylesheet" />
     <link href="THEME/css/style.css" rel="stylesheet">
     <link href="THEME/css/themes/all-themes.css" rel="stylesheet" />
-    <style>
-        .sidebar .menu .list .zeroMenu::before {
-            content: '0' !important;
-        }
-
-        .mainmenu {
-            float: left;
-            margin-bottom: 2%;
-            margin-left: 2%;
-        }
-
-        .dropdown-submenu {
-            position: relative;
-        }
-
-        .dropdown-submenu .dropdown-menu {
-            top: 0;
-            left: 100%;
-            margin-top: -1px;
-        }
-    </style>
 </head>
 
 <body class="theme-light-blue">
@@ -66,10 +44,9 @@
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="javascript:void(0);" class="bars"></a>
-                <a href="#" class="aLogo"><img src="logo.png" alt="Logo" /></a>
+                <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="#" class="bars"></a>
+                <a href="#" class="lnkHome"><img src="logo.png" alt="Logo" /></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -77,19 +54,14 @@
                         <a href="#" style="font-size: 24px; font-weight: bolder;">BYGOZ E-LEARNING PRIVATE LIMITED</a>
                     </li>
                     <li>
-                        <a href="#" class="aLogo" data-close="true">
+                        <a href="#" class="lnkHome" data-close="true">
                             <i class="material-icons">home</i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="js-search" data-close="true">
-                            <i class="material-icons">search</i>
                         </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#" id="mLogin">
+                        <a href="#" class="lnkLogin">
                             <i class="material-icons">shopping_cart</i>
                             <span>Bygoz Store</span>
                         </a>
@@ -102,69 +74,102 @@
         <aside id="leftsidebar" class="sidebar">
             <div class="menu">
                 <ul class="list">
-                    <li class="header">
-                        <i class="material-icons">book</i>
-                        <big>
-                            <big>
-                                <big>
-                                    <big>
-                                        <big>
-                                            <b>Library</b>
-                                        </big>
-                                    </big>
-                                </big>
-                            </big>
-                        </big>
-                        <i class="material-icons pull-right">refresh</i>
-                    </li>
                     <li>
-                        <a href="#" class="" id="aAll">
-                            <span>All</span>
+                        <a href="#" class="lnkHome">
+                            <i class="material-icons">home</i>
+                            <span>HOME</span>
                         </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
                     </li>
+
                     <li>
-                        <a href="#" class="" id="aBuy">
-                            <span>Purchase</span>
+                        <a href="#" class="lnkLibrary">
+                            <i class="material-icons">account_balance</i>
+                            <span>LIBRARY</span>
                         </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
                     </li>
+
                     <li>
-                        <a href="#" class="" id="aSample">
-                            <span>Demo eBooks</span>
+                        <a href="#" class="lnkStore">
+                            <i class="material-icons">store</i>
+                            <span>STORE</span>
                         </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
                     </li>
-                    <li class="header">
-                        <i class="material-icons">list</i>
-                        <big>
-                            <big>
-                                <big>
-                                    <big>
-                                        <big>
-                                            <b>Collections</b>
-                                        </big>
-                                    </big>
-                                </big>
-                            </big>
-                        </big>
-                        <i class="material-icons pull-right">swap_vert</i>
-                        <i class="material-icons pull-right">add</i>
-                    </li>
+
                     <li>
-                        <div class="input-group" style="padding: 5%;">
-                            <span class="input-group-addon">
-                                <i class="material-icons">search</i>
-                            </span>
-                            <div class="form-line">
-                                <input type="text" class="form-control" placeholder="Search Collection Name" />
-                            </div>
-                        </div>
+                        <a href="#" class="lnkPurchase">
+                            <i class="material-icons">attach_money</i>
+                            <span>PURCHASE</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkCart">
+                            <i class="material-icons">add_shopping_cart</i>
+                            <span>CART</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkAuthors">
+                            <i class="material-icons">contacts</i>
+                            <span>AUTHORS</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkFavouriteBooks">
+                            <i class="material-icons">bookmarks</i>
+                            <span>FAVOURITE BOOK</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkTranscationHistory">
+                            <i class="material-icons">account_balance_wallet</i>
+                            <span>TRANSCATION HISTORY</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkMyProfile">
+                            <i class="material-icons">account_box</i>
+                            <span>MY PROFILE</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkChangePassword">
+                            <i class="material-icons">settings_applications</i>
+                            <span>CHANGE PASSWORD</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkSellWithUs">
+                            <i class="material-icons">shopping_cart</i>
+                            <span>SELL WITH US</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
+                    </li>
+
+                    <li>
+                        <a href="#" class="lnkLogout">
+                            <i class="material-icons">lock</i>
+                            <span>LOGOUT</span>
+                        </a>
+                        <hr style="margin-bottom: 0; margin-top: 0;" />
                     </li>
                 </ul>
-            </div>
-            <div class="legal">
-                <div class="copyright">
-                    &copy; 2019
-                    <a href="#">Bygoz e-Learning Private Limited</a>.
-                </div>
             </div>
         </aside>
     </section>
@@ -172,7 +177,7 @@
         <div class="container-fluid">
 
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="body">
                             <div class="row" id="loadBookDetail">
@@ -185,7 +190,12 @@
 
         </div>
     </section>
-    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
     <script src="THEME/plugins/jquery/jquery.min.js"></script>
     <script src="THEME/plugins/bootstrap/js/bootstrap.js"></script>
     <script src="THEME/plugins/bootstrap-select/js/bootstrap-select.js"></script>
@@ -196,113 +206,11 @@
     <script src="THEME/js/custom.js"></script>
 
     <script>
-        $(function () {
-            var id = '';
-            var imgURL = '';
-            var captionTitle = '';
-            var detail = '';
-            var price = '';
-
-            if (window.localStorage.getItem("boodDetailID") != null) {
-                id = window.localStorage.getItem("boodDetailID");
-            }
-
-            if (id == "1") {
-                imgURL = 'PDF/1.jpg';
-                captionTitle = 'Account';
-                detail = 'This is a demo pdf file';
-                price = '$500';
-            }
-            else if (id == "2") {
-                imgURL = 'PDF/2.jpg';
-                captionTitle = 'Economics';
-                detail = 'This is a demo pdf file';
-                price = '$400';
-            }
-            else if (id == "3") {
-                imgURL = 'PDF/3.jpg';
-                captionTitle = 'State';
-                detail = 'This is a demo pdf file';
-                price = '$300';
-            }
-            else if (id == "4") {
-                imgURL = 'PDF/4.jpg';
-                captionTitle = 'Account';
-                detail = 'This is a demo pdf file';
-                price = '$60';
-            }
-            else if (id == "5") {
-                imgURL = 'PDF/5.jpg';
-                captionTitle = 'BA';
-                detail = 'This is a demo pdf file';
-                price = '$50';
-            }
-            else if (id == "6") {
-                imgURL = 'PDF/6.jpg';
-                captionTitle = 'Account';
-                detail = 'This is a demo pdf file';
-                price = '$40';
-            }
-            else if (id == "7") {
-                imgURL = 'PDF/7.jpg';
-                captionTitle = 'Economics';
-                detail = 'This is a demo pdf file';
-                price = '$30';
-            }
-            else if (id == "8") {
-                imgURL = 'PDF/8.jpg';
-                captionTitle = 'Physics';
-                detail = 'This is a demo pdf file';
-                price = '$20';
-            }
-            else if (id == "9") {
-                imgURL = 'PDF/9.jpg';
-                captionTitle = 'Physics';
-                detail = 'This is a demo pdf file';
-                price = '$120';
-            }
-            else if (id == "10") {
-                imgURL = 'PDF/10.jpg';
-                captionTitle = 'Computer';
-                detail = 'This is a demo pdf file';
-                price = '$100';
-            }
-
-            var str = '<div class="wrapper row">';
-            str = str + '<div class="preview col-md-4">';
-            str = str + '<img src="' + imgURL + '" style="height: 500px; width: 350px;" />';
-            str = str + '</div>';
-            str = str + '<div class="details col-md-8">';
-            str = str + '<h3 class="product-title">' + captionTitle + '</h3>';
-            str = str + '<p class="product-description">' + detail + '</p>';
-            str = str + '<h4 class="price">Currunt Price: <span>' + price + '</span></h4>';
-            str = str + '<div class="action">';
-            str = str + '<button class="btn btn-primary">PAY</button>';
-            str = str + '</div>';
-            str = str + '</div>';
-            str = str + '</div>';
-
-            $("#loadBookDetail").html(str);
-        });
-
-        $(document).ready(function () {
-            $('#aAll').click(function (e) {
-                e.preventDefault();
-                window.location.href = "main.html";
-            });
-
-            $('#aBuy').click(function (e) {
-                e.preventDefault();
-                window.location.href = "main.html";
-            });
-
-            $('#aSample').click(function (e) {
-                e.preventDefault();
-                window.location.href = "library.html";
-            });
-        });
     </script>
-    <script>if (window.module) module = window.module;</script>
+
+    <script>
+        if (window.module) module = window.module;
+    </script>
 </body>
 
 </html>

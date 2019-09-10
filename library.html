@@ -177,7 +177,7 @@
         <div class="container-fluid">
 
             <div class="row clearfix">
-                <div class="col-md-12 bindDashboardData">
+                <div class="col-md-12 bindLibraryList">
 
                 </div>
             </div>
@@ -198,63 +198,64 @@
     <script src="THEME/js/admin.js"></script>
     <script src="THEME/js/demo.js"></script>
     <script src="THEME/js/custom.js"></script>
-
     <script>
-        var lstBooks = [];
-
         $(function() {
-            var store = "";
-            if (window.localStorage.getItem("store") != null) {
-                store = window.localStorage.getItem("store");
-            }
-            var categoryID = 0;
-            if (window.localStorage.getItem("categoryID") != null) {
-                categoryID = window.localStorage.getItem("categoryID");
-            }
-            var subCategoryID = 0;
-            if (window.localStorage.getItem("subCategoryID") != null) {
-                subCategoryID = window.localStorage.getItem("subCategoryID");
-            }
-
-            $.post(apiUrl + "book_detail", {
-                category_id: categoryID,
-                format: store,
-                subcategory_id: subCategoryID
-            }, function(data) {
-                if (data.status === true) {
-                    lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
-
-                    // Top Newest Books
-                    var strBookList = '';
-                    var arrBookList = data.book_list;
-                    strBookList = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strBookList = strBookList + '<h4 style="color: #03A9F4;">BOOK LIST</h4></div>';
-
-                    for (i = 0; i < arrBookList.length; i++) {
-                        var filtered = lstBooks.filter(function(value) {
-                            return value == arrBookList[i].book_id;
-                        });
-
-                        strBookList = strBookList + '<div class="col-md-3"><div class="thumbnail">';
-                        strBookList = strBookList + '<img src="' + frontCoverUrl + arrBookList[i].front_cover + '" style="height: 300px; width: 250px;" />';
-                        strBookList = strBookList + '<div class="caption">';
-                        strBookList = strBookList + '<h3>' + arrBookList[i].name + '</h3>';
-
-                        if (filtered.length > 0) {
-                            strBookList = strBookList + '<p><button onclick="openPDf(\'' + arrBookList[i].file_path + '\')" class="btn btn-success">VIEW</button>';
-                        } else {
-                            strBookList = strBookList + '<p><button onclick="download(' + arrBookList[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
-                        }
-
-                        strBookList = strBookList + ' <button onclick="#" class="btn btn-primary">BUY NOW</button></p>';
-                        strBookList = strBookList + '</div></div></div>';
-                    }
-
-                    strBookList = strBookList + '</div></div></div>';
-                    $(".bindDashboardData").append(strBookList);
-                }
-            });
+            bindDownloads();
         });
+
+        var lstBooks = [];
+        var strRecommendedBook = "";
+
+        function bindDownloads() {
+            $(".bindLibraryList").html('');
+            if (window.localStorage.getItem("lstBooks") != null) {
+                if (window.localStorage.getItem("lstBooks") == "[]") {
+                    strRecommendedBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                    strRecommendedBook = strRecommendedBook + '<h4 style="color: #03A9F4;">DOWNLOAD BOOKS</h4></div>';
+                    strRecommendedBook = strRecommendedBook + '<div class="col-md-3"><span>You have download nothing</span>';
+                    strRecommendedBook = strRecommendedBook + '</div></div></div></div>';
+                    $(".bindLibraryList").append(strRecommendedBook);
+                } else {
+                    lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
+                    $.post(apiUrl + "dashboard_detail", {
+                        type: "",
+                        page_index: 0,
+                        user_id: 0
+                    }, function(data) {
+                        if (data.status === true) {
+                            var arrRecommendedBook = data.recommended_book;
+                            strRecommendedBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                            strRecommendedBook = strRecommendedBook + '<h4 style="color: #03A9F4;">DOWNLOAD BOOKS </h4></div>';
+
+                            for (i = 0; i < arrRecommendedBook.length; i++) {
+                                var filtered = lstBooks.filter(function(value) {
+                                    return value == arrRecommendedBook[i].book_id;
+                                });
+
+                                if (filtered.length > 0) {
+                                    strRecommendedBook = strRecommendedBook + '<div class="col-md-3"><div class="thumbnail">';
+                                    strRecommendedBook = strRecommendedBook + '<img src="' + frontCoverUrl + arrRecommendedBook[i].front_cover + '" style="height: 300px; width: 250px;" />';
+                                    strRecommendedBook = strRecommendedBook + '<div class="caption">';
+                                    strRecommendedBook = strRecommendedBook + '<h3>' + arrRecommendedBook[i].name + '</h3>';
+                                    strRecommendedBook = strRecommendedBook + '<p><button onclick="openPDf(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                    strRecommendedBook = strRecommendedBook + ' <button onclick="remove(\'' + arrRecommendedBook[i].book_id + '\')" class="btn btn-danger">REMOVE</button></p>';
+                                    strRecommendedBook = strRecommendedBook + '</div></div></div>';
+                                }
+                            }
+
+                            strRecommendedBook = strRecommendedBook + '</div></div></div>';
+                            $(".bindLibraryList").append(strRecommendedBook);
+                        }
+                    });
+                }
+            } else {
+                strRecommendedBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                strRecommendedBook = strRecommendedBook + '<h4 style="color: #03A9F4;">DOWNLOAD BOOKS</h4></div>';
+                strRecommendedBook = strRecommendedBook + '<div class="col-md-3"><span>You have download nothing</span>';
+                strRecommendedBook = strRecommendedBook + '</div></div></div></div>';
+                $(".bindLibraryList").append(strRecommendedBook);
+            }
+        }
 
         function openPDf(url) {
             window.localStorage.removeItem("pdfUrl");
@@ -273,20 +274,13 @@
             win.loadFile('viewer.html')
         }
 
-        function download(id) {
+        function remove(bookID) {
             lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
-
             var filtered = lstBooks.filter(function(value) {
-                return value == id;
+                return value != bookID;
             });
-
-            if (filtered.length > 0) {
-                alert("Book is already in demos.");
-            } else {
-                lstBooks.push(id.toString());
-                window.localStorage.setItem("lstBooks", JSON.stringify(lstBooks));
-                alert("Books successfully downloaded.");
-            }
+            window.localStorage.setItem("lstBooks", JSON.stringify(filtered));
+            bindDownloads();
         }
     </script>
 
