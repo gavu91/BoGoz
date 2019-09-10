@@ -1,6 +1,7 @@
 const webUrl = 'http://www.bygoz.com/';
 const apiUrl = 'http://www.bygoz.com/public/api/';
 const pdfUrl = 'http://bygoz.com/uploads/book/pdf/';
+const imageUrl = 'http://www.bygoz.com/uploads/profile-images/author/';
 const frontCoverUrl = 'http://bygoz.com/public/uploads/book/front_cover/';
 
 $(document).ready(function() {
