@@ -2,21 +2,43 @@ const electron = require('electron');
 const path = require('path');
 const url = require('url');
 const { app, BrowserWindow, Menu, ipcMain, dialog } = electron;
-
+const { initSplashScreen, OfficeTemplate } = require('electron-splashscreen');
+// const isDev = require('electron-is-dev');
+const { resolve } = require('app-root-path');
 let mainWindow;
-var directExit = false;
-
+var directExit = false; 
 process.env.NODE_ENV = 'development';
 
-app.on('ready', function () {
-  mainWindow = new BrowserWindow({});
-  mainWindow.maximize();
+app.on('ready', function () { 
+  const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
+  // win = new BrowserWindow({ width, height })
+  mainWindow = new BrowserWindow({show:false,width, height,frame:false}); 
+
+  const hideSplashscreen = initSplashScreen({
+    mainWindow, 
+    icon: resolve('icon/favicon.ico'), 
+    url: OfficeTemplate,
+    width: 500,
+    height: 300,
+    brand: 'ByGoz',
+    productName: 'ByGoz',
+    logo:resolve('logo.png'), 
+    website: 'www.ByGoz.com',
+    text: 'Initializing ...'
+  }); 
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'main.html'),
     protocol: 'file:',
     slashes: true
   }));
 
+  mainWindow.once('ready-to-show', () => { 
+    // mainWindow.setMenu(null);
+    mainWindow.show();  
+    // mainWindow.setFullScreen(false);
+    // window.location.reload();
+    hideSplashscreen();
+  }); 
   mainWindow.on('close', function (e) {
     if (!directExit) {
       var choice = dialog.showMessageBox({
@@ -37,7 +59,7 @@ app.on('ready', function () {
     }
   });
 
-  const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+  const mainMenu = Menu.buildFromTemplate(mainMenuTemplate); 
   Menu.setApplicationMenu(mainMenu);
 });
 

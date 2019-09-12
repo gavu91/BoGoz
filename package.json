@@ -11,13 +11,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@pdftron/webviewer-downloader": "^1.0.7",
+    "app-root-path": "^2.2.1",
+    "btoa": "^1.2.1",
+    "custom-electron-titlebar": "^3.1.0",
+    "download": "^7.1.0",
     "electron": "^4.1.1",
     "electron-packager": "^13.1.1",
-    "jquery": "^3.3.1",
-    "macaddress": "^0.2.9",
-    "btoa": "^1.2.1",
-    "download": "^7.1.0",
+    "electron-splashscreen": "^1.0.0",
     "fs-extra": "^7.0.1",
-    "@pdftron/webviewer-downloader": "^1.0.7"
+    "jquery": "^3.3.1",
+    "macaddress": "^0.2.9"
   }
 }
