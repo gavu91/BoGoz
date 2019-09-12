@@ -1,8 +1,6 @@
         const customTitlebar = require('custom-electron-titlebar');
         var titleBar  = new customTitlebar.Titlebar({
-            backgroundColor: customTitlebar.Color.fromHex('#03A9F4'),
-            titleHorizontalAlignment:"left"
+            backgroundColor: customTitlebar.Color.fromHex('#1569C7') 
         });
-        //  titleBar.updateMenu();
-        titleBar.setHorizontalAlignment("left");
+        //  titleBar.updateMenu(); 
         // titleBar.updateIcon('icon/favicon.ico');
