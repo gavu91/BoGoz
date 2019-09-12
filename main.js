@@ -10,7 +10,7 @@ var directExit = false;
 process.env.NODE_ENV = 'development';
 
 app.on('ready', function () { 
-  const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
+  const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
   // win = new BrowserWindow({ width, height })
   mainWindow = new BrowserWindow({show:false,width, height,frame:false}); 
 
