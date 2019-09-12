@@ -6,11 +6,27 @@ const frontCoverUrl = 'http://bygoz.com/public/uploads/book/front_cover/';
 
 $(document).ready(function() {
     $(".masterPage").load("masterpage.html", function() {
-        $(".lnkPurchase").css("display", "none");
-        $(".lnkCart").css("display", "none");
-        $(".lnkTranscationHistory").css("display", "none");
-        $(".lnkMyProfile").css("display", "none");
-        $(".lnkChangePassword").css("display", "none");
-        $(".lnkLogout").css("display", "none");
+        if(window.localStorage.getItem("isAuthenticate") != null && window.localStorage.getItem("isAuthenticate") != undefined){
+            $(".lnkPurchase").css("display", "flex");
+            $(".lnkCart").css("display", "flex");
+            $(".lnkTranscationHistory").css("display", "flex");
+            $(".lnkMyProfile").css("display", "flex");
+            $(".lnkChangePassword").css("display", "flex");
+            $(".lnkLogout").css("display", "flex");
+        }
+       else{
+            $(".lnkPurchase").css("display", "none");
+            $(".lnkCart").css("display", "none");
+            $(".lnkTranscationHistory").css("display", "none");
+            $(".lnkMyProfile").css("display", "none");
+            $(".lnkChangePassword").css("display", "none");
+            $(".lnkLogout").css("display", "none");
+       }
+
+       $(".lnkLogout").click(function(){
+            window.localStorage.removeItem("isAuthenticate");
+            window.localStorage.removeItem("UserID");
+            window.location.href = "main.html"; 
+       });
     });
 });

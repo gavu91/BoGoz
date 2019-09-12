@@ -19,7 +19,16 @@
     <div class="masterPage"> </div>
     <section class="content">
         <div class="container-fluid">
+            <div class="card" style="padding: 2em">
+                <div class="row">
+                    <div class="col-md-4" id="imgAuthDiv">
 
+                    </div>
+                    <div class="col-md-8" id="authDetail">
+    
+                    </div>
+                </div> 
+            </div>
             <div class="row clearfix">
                 <div class="col-md-12 bindAuthorDetail">
 
@@ -41,12 +50,22 @@
     <script src="THEME/plugins/node-waves/waves.js"></script>
     <script src="THEME/js/admin.js"></script>
     <script src="THEME/js/demo.js"></script>
-    <script src="THEME/js/custom.js"></script>
-
+    <script src="THEME/js/custom.js"></script> 
     <script>
         var lstBooks = [];
-
+        var strAuthDetail = '';
         var authorDetail = JSON.parse(window.localStorage.getItem("authorData"));
+        console.log(authorDetail);
+        $("#imgAuthDiv").html('<img src="' + imageUrl + authorDetail.image + '" style="height: 300px;width: 100%;" />');
+        strAuthDetail = strAuthDetail + '<h2>' + authorDetail.name + '</h2>';
+        strAuthDetail = strAuthDetail + '<p class="email"> <b>Email : </b>' + authorDetail.email_id + '</p>';
+        strAuthDetail = strAuthDetail + '<p class="education">  <b>Education :  </b>' + authorDetail.education + '</p>';
+        strAuthDetail = strAuthDetail + '<p class="designation">  <b>Designation :  </b>' + authorDetail.designation + '</p>';
+        strAuthDetail = strAuthDetail + '<p class="address">  <b>Address :  </b>' + authorDetail.address + '</p>';
+        strAuthDetail = strAuthDetail + '<p class="mobileno">  <b>Mobile No. :  </b>' + authorDetail.mobile_no + '</p>';
+        strAuthDetail = strAuthDetail + '<h4 style="color:red">Description</h4>';
+        strAuthDetail = strAuthDetail + '<p class="description">' + authorDetail.description + '</p>';
+        $("#authDetail").html(strAuthDetail);
         $.post(apiUrl + "book_detail", {
             author_id: authorDetail.author_id
         }, function(data) {
@@ -55,7 +74,7 @@
                 var strBookList = '';
                 var arrBookList = data.book_list;
                 strBookList = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                strBookList = strBookList + '<h4 style="color: #03A9F4;">BOOK LIST</h4></div>';
+                strBookList = strBookList + '<h4 style="color: #03A9F4;">Books</h4></div>';
 
                 for (i = 0; i < arrBookList.length; i++) {
                     var filtered = lstBooks.filter(function(value) {
