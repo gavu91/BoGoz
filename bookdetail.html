@@ -24,7 +24,6 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="body">
-                          x`x`x
                             <div class="row bindBookDetail">
                             </div>
                         </div>
@@ -50,10 +49,21 @@
     <script src="THEME/js/custom.js"></script>
 
     <script>
+        var getApiToken = '';
+        var bookID = "";
+        var UserID = 0;
+
         $(function() {
-            var bookID = "";
+            if (window.localStorage.getItem("ApiToken") != null) {
+                getApiToken = window.localStorage.getItem("ApiToken");
+            }
+
             if (window.localStorage.getItem("bookID") != null) {
                 bookID = window.localStorage.getItem("bookID");
+            }
+
+            if (window.localStorage.getItem("UserID") != null) {
+                UserID = window.localStorage.getItem("UserID");
             }
 
             $.post(apiUrl + "book_detail", {
@@ -84,7 +94,7 @@
                     strBookDetail = strBookDetail + '<p class="description">by ' + arrAuthorDetail.name + '</p><br />';
                     strBookDetail = strBookDetail + '<p class="description"><label>Description:</label><br /> ' + arrBookDetail[0].description + '</p><br />';
                     strBookDetail = strBookDetail + strPrice;
-                    strBookDetail = strBookDetail + '<button class="btn btn-primary"> Checkout </button> <button class="btn btn-warning"> Add to Cart </button>';
+                    strBookDetail = strBookDetail + '<button onclick="checkout(\'' + bookID + '\')" class="btn btn-primary"> Checkout </button> <button onclick="add(\'' + bookID + '\')" class="btn btn-warning"> Add to Cart </button>';
                     strBookDetail = strBookDetail + '<hr style="border: 1px solid #03A9F4;">';
                     strBookDetail = strBookDetail + '<label style="color: maroon;">Product Information</label>';
                     strBookDetail = strBookDetail + '<table class="table">';
@@ -109,6 +119,38 @@
                 }
             });
         });
+
+        function checkout(id) {
+            if (UserID == 0) {
+                window.location.href = "login.html";
+            } else {
+                window.localStorage.removeItem("bookID");
+                window.localStorage.setItem("bookID", id);
+                window.location.href = "checkout.html";
+            }
+        }
+
+        function add(id) {
+            if (UserID == 0) {
+                window.location.href = "login.html";
+            } else {
+                $.ajax({
+                    url: apiUrl + "add_to_cart",
+                    method: 'POST',
+                    headers: {
+                        "Authorization": "Bearer " + getApiToken,
+                    },
+                    data: {
+                        "book_id": id,
+                        "added_qty": 1,
+                        "user_id": UserID
+                    },
+                    success: function(data) {
+                        alert(data.message);
+                    }
+                });
+            }
+        }
     </script>
 
     <script>

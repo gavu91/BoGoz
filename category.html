@@ -32,7 +32,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="body">
-                            <h4 style="color: #03A9F4;">CATEGORY </h4>
+                            <h4 style="color: #03A9F4;" id="b1"> </h4>
                         </div>
                     </div>
                 </div>
@@ -57,6 +57,21 @@
 
     <script>
         $(function() {
+            var store = "";
+            if (window.localStorage.getItem("store") != null) {
+                store = window.localStorage.getItem("store");
+
+                if (store == "video") {
+                    $("#b1").html("<a href='store.html'>Videos</a> > CATEGORY");
+                }
+                if (store == "pdf") {
+                    $("#b1").html("<a href='store.html'>E-Books</a> > CATEGORY");
+                }
+                if (store == "epub") {
+                    $("#b1").html("<a href='store.html'>Books</a> > CATEGORY");
+                }
+            }
+
             $.get(apiUrl + "category_list", function(data) {
                 if (data.status === true) {
                     var strCategory = '';
@@ -64,7 +79,7 @@
 
                     for (i = 0; i < arrCategory.length; i++) {
                         strCategory = strCategory + '<div class="col-md-4"><div class="card"><div class="body">';
-                        strCategory = strCategory + '<a href="#" class="btnStore" onclick="subcategory(' + arrCategory[i].category_id + ')">' + arrCategory[i].name + '</a>';
+                        strCategory = strCategory + '<a href="#" class="btnStore" onclick="subcategory(' + arrCategory[i].category_id + ',\'' + arrCategory[i].name + '\')">' + arrCategory[i].name + '</a>';
                         strCategory = strCategory + '</div></div></div>';
                     }
 
@@ -73,9 +88,11 @@
             });
         });
 
-        function subcategory(id) {
+        function subcategory(id, name) {
             window.localStorage.removeItem("categoryID");
+            window.localStorage.removeItem("categoryName");
             window.localStorage.setItem("categoryID", id);
+            window.localStorage.setItem("categoryName", name);
             window.location.href = "subcategory.html";
         }
     </script>

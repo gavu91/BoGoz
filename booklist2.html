@@ -48,8 +48,29 @@
 
         $(function() {
             var store = "";
+            var b3 = "";
             if (window.localStorage.getItem("store") != null) {
                 store = window.localStorage.getItem("store");
+
+                var categoryName = "";
+                var subCategoryName = "";
+                if (window.localStorage.getItem("categoryName") != null) {
+                    categoryName = window.localStorage.getItem("categoryName");
+
+                    if (window.localStorage.getItem("subCategoryName") != null) {
+                        subCategoryName = window.localStorage.getItem("subCategoryName");
+
+                        if (store == "video") {
+                            b3 = "<a href='store.html'>Videos</a> > <a href='category.html'>" + categoryName + "</a> > <a href='subcategory.html'>" + subCategoryName + "</a> > BOOK LIST";
+                        }
+                        if (store == "pdf") {
+                            b3 = "<a href='store.html'>E-Books</a> > <a href='category.html'>" + categoryName + "</a> > <a href='subcategory.html'>" + subCategoryName + "</a> > BOOK LIST";
+                        }
+                        if (store == "epub") {
+                            b3 = "<a href='store.html'>Books</a> > <a href='category.html'>" + categoryName + "</a> > <a href='subcategory.html'>" + subCategoryName + "</a> > BOOK LIST";
+                        }
+                    }
+                }
             }
             var categoryID = 0;
             if (window.localStorage.getItem("categoryID") != null) {
@@ -72,7 +93,7 @@
                     var strBookList = '';
                     var arrBookList = data.book_list;
                     strBookList = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
-                    strBookList = strBookList + '<h4 style="color: #03A9F4;">BOOK LIST</h4></div>';
+                    strBookList = strBookList + '<h4 style="color: #03A9F4;">' + b3 + '</h4></div>';
 
                     for (i = 0; i < arrBookList.length; i++) {
                         var filtered = lstBooks.filter(function(value) {

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>BYGOZ E-LEARNING PRIVATE LIMITED</title>
+    <link rel="icon" href="THEME/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link href="THEME/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="THEME/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="THEME/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="THEME/css/style.css" rel="stylesheet">
+    <link href="THEME/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-light-blue">
+    <div class="masterPage"> </div>
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-sm-4 col-sm-offset-4">
+                                    <div class="login-form">
+                                        <h4>My Profile</h4>
+                                        <br />
+                                        <form action="#">
+                                            <input type="text" id="txtName" class="form-control" placeholder="Name *" /><br />
+                                            <input type="text" id="txtUserName" class="form-control" placeholder="Username *" /><br />
+                                            <input type="email" id="txtEmail" class="form-control" placeholder="Email *" /><br />
+                                            <input type="text" id="txtMobile" class="form-control" placeholder="Mobile Number *" /><br />
+                                            <input type="text" id="txtDOB" class="form-control" placeholder="Date of birth *" /><br />
+                                            <input type="radio" id="rbMale" name="gender" value="Male" />&nbsp;&nbsp;&nbsp;&nbsp; Male &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input type="radio" id="rbFemale" name="gender" value="Female" />&nbsp;&nbsp;&nbsp;&nbsp; Female<br /><br />
+                                            <select id="ddlState">
+                                                <option>Select State</option>
+                                                <option value="Gujarat">Gujarat</option>
+                                            </select>
+                                            <br /><br />
+                                            <button type="submit" id="btnUpdate" class="btn btn-success" style="width: 100%;">UPDATE</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="THEME/plugins/jquery/jquery.min.js"></script>
+    <script src="THEME/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="THEME/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="THEME/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="THEME/plugins/node-waves/waves.js"></script>
+    <script src="THEME/js/admin.js"></script>
+    <script src="THEME/js/demo.js"></script>
+    <script src="THEME/js/custom.js"></script>
+
+    <script>
+        var getApiToken = '';
+        var UserID = 0;
+
+        var dob = "";
+        var name = "";
+        var state = "";
+        var email = "";
+        var mobile = "";
+        var username = "";
+
+        $(function() {
+            $(".dropdown-toggle").remove();
+            $(".dropdown-menu").remove();
+
+            if (window.localStorage.getItem("ApiToken") != null) {
+                getApiToken = window.localStorage.getItem("ApiToken");
+            }
+            if (window.localStorage.getItem("UserID") != null) {
+                UserID = window.localStorage.getItem("UserID");
+            }
+            if (window.localStorage.getItem("uState") != null) {
+                state = window.localStorage.getItem("uState");
+            }
+            if (window.localStorage.getItem("uDOB") != null) {
+                dob = window.localStorage.getItem("uDOB");
+            }
+            if (window.localStorage.getItem("uMobile") != null) {
+                mobile = window.localStorage.getItem("uMobile");
+            }
+            if (window.localStorage.getItem("uName") != null) {
+                name = window.localStorage.getItem("uName");
+            }
+            if (window.localStorage.getItem("uEmail") != null) {
+                email = window.localStorage.getItem("uEmail");
+            }
+            if (window.localStorage.getItem("uUsername") != null) {
+                username = window.localStorage.getItem("uUsername");
+            }
+
+            $("#txtUserName").val(username);
+            $("#txtEmail").val(email);
+            $("#txtName").val(name);
+            $("#txtMobile").val(mobile);
+            $("#txtDOB").val(dob);
+            $("#ddlState").val(state);
+        });
+
+        $("#btnUpdate").click(function(e) {
+            e.preventDefault();
+
+            alert($("input[name='gender']:checked").val());
+
+            var userMetaData = {
+                "contact_number": $("#txtMobile").val(),
+                "dob": $("#txtDOB").val(),
+                "email": $("#txtEmail").val(),
+                "gender": $("input[name='gender']:checked").val(),
+                "name": $("#txtName").val(),
+                "state": $("#ddlState").val(),
+                "username": $("#txtUserName").val(),
+                "id": UserID
+            }
+            var fd = new FormData();
+
+            fd.append("user_detail", JSON.stringify(userMetaData));
+
+            $.ajax({
+                url: apiUrl + "save_user_profile",
+                type: 'POST',
+                headers: {
+                    "Authorization": "Bearer " + getApiToken,
+                },
+                data: fd,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    alert(data);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        if (window.module) module = window.module;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>BYGOZ E-LEARNING PRIVATE LIMITED</title>
+    <link rel="icon" href="THEME/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link href="THEME/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="THEME/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="THEME/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="THEME/css/style.css" rel="stylesheet">
+    <link href="THEME/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-light-blue">
+    <div class="masterPage"> </div>
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row clearfix">
+                <div class="col-md-12 bindCartList">
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="THEME/plugins/jquery/jquery.min.js"></script>
+    <script src="THEME/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="THEME/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="THEME/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="THEME/plugins/node-waves/waves.js"></script>
+    <script src="THEME/js/admin.js"></script>
+    <script src="THEME/js/demo.js"></script>
+    <script src="THEME/js/custom.js"></script>
+
+    <script>
+        var getApiToken = '';
+
+        $(function() {
+            if (window.localStorage.getItem("ApiToken") != null) {
+                getApiToken = window.localStorage.getItem("ApiToken");
+            }
+
+            bindCartList();
+        });
+
+        function bindCartList() {
+            $(".bindCartList").html('');
+
+            $.ajax({
+                url: apiUrl + "my_cart",
+                method: 'GET',
+                headers: {
+                    "Authorization": "Bearer " + getApiToken,
+                },
+                success: function(data) {
+                    var strCart = '';
+                    var arrCart = data.data;
+                    strCart = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                    strCart = strCart + '<h4 style="color: #03A9F4;">MY CART LIST</h4></div>';
+
+                    for (i = 0; i < arrCart.length; i++) {
+                        strCart = strCart + '<div class="col-md-3"><div class="thumbnail">';
+                        strCart = strCart + '<img src="' + frontCoverUrl + arrCart[i].front_cover + '" style="height: 300px; width: 250px;" />';
+                        strCart = strCart + '<div class="caption">';
+                        strCart = strCart + '<h3>' + arrCart[i].name + '</h3>';
+                        strCart = strCart + '<p><button onclick="checkout(\'' + arrCart[i].book_id + '\')" class="btn btn-success">CHECKOUT</button>';
+                        strCart = strCart + ' <button onclick="remove(' + arrCart[i].id + ')" class="btn btn-danger">REMOVE</button></p>';
+                        strCart = strCart + '</div></div></div>';
+                    }
+
+                    strCart = strCart + '</div></div></div>';
+                    $(".bindCartList").append(strCart);
+                }
+            });
+        }
+
+        function checkout(id) {
+            window.localStorage.removeItem("bookID");
+            window.localStorage.setItem("bookID", id);
+            window.location.href = "checkout.html";
+        }
+
+        function remove(id) {
+            $.ajax({
+                url: apiUrl + "remove_from_cart",
+                method: 'POST',
+                headers: {
+                    "Authorization": "Bearer " + getApiToken,
+                },
+                data: {
+                    "id": id
+                },
+                success: function(data) {
+                    alert(data.message);
+                    bindCartList();
+                }
+            });
+        }
+    </script>
+
+    <script>
+        if (window.module) module = window.module;
+    </script>
+</body>
+
+</html>

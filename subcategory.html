@@ -32,7 +32,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="body">
-                            <h4 style="color: #03A9F4;">SUB CATEGORY </h4>
+                            <h4 style="color: #03A9F4;" id="b2"> </h4>
                         </div>
                     </div>
                 </div>
@@ -57,10 +57,31 @@
 
     <script>
         $(function() {
+            var store = "";
             var categoryID = 0;
+            var categoryName = "";
             if (window.localStorage.getItem("categoryID") != null) {
                 categoryID = window.localStorage.getItem("categoryID");
             }
+
+            if (window.localStorage.getItem("store") != null) {
+                store = window.localStorage.getItem("store");
+
+                if (window.localStorage.getItem("categoryName") != null) {
+                    categoryName = window.localStorage.getItem("categoryName");
+
+                    if (store == "video") {
+                        $("#b2").html("<a href='store.html'>Videos</a> > <a href='category.html'>" + categoryName + "</a> > SUB CATEGORY");
+                    }
+                    if (store == "pdf") {
+                        $("#b2").html("<a href='store.html'>E-Books</a> > <a href='category.html'>" + categoryName + "</a> > SUB CATEGORY");
+                    }
+                    if (store == "epub") {
+                        $("#b2").html("<a href='store.html'>Books</a> > <a href='category.html'>" + categoryName + "</a> > SUB CATEGORY");
+                    }
+                }
+            }
+
             $.post(apiUrl + "subcategory_list", {
                 category_id: categoryID
             }, function(data) {
@@ -70,7 +91,7 @@
 
                     for (i = 0; i < arrCategory.length; i++) {
                         strCategory = strCategory + '<div class="col-md-4"><div class="card"><div class="body">';
-                        strCategory = strCategory + '<a href="#" class="btnStore" onclick="redirectToBooklist2(' + arrCategory[i].subcategory_id + ')">' + arrCategory[i].name + '</a>';
+                        strCategory = strCategory + '<a href="#" class="btnStore" onclick="redirectToBooklist2(' + arrCategory[i].subcategory_id + ',\'' + arrCategory[i].name + '\')">' + arrCategory[i].name + '</a>';
                         strCategory = strCategory + '</div></div></div>';
                     }
 
@@ -79,9 +100,11 @@
             });
         });
 
-        function redirectToBooklist2(id) {
+        function redirectToBooklist2(id, name) {
             window.localStorage.removeItem("subCategoryID");
+            window.localStorage.removeItem("subCategoryName");
             window.localStorage.setItem("subCategoryID", id);
+            window.localStorage.setItem("subCategoryName", name);
             window.location.href = "booklist2.html";
         }
     </script>

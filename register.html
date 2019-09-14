@@ -6,8 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>BYGOZ E-LEARNING PRIVATE LIMITED</title>
     <link rel="icon" href="THEME/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
-        type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="THEME/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="THEME/plugins/node-waves/waves.css" rel="stylesheet" />
@@ -17,52 +16,21 @@
 </head>
 
 <body class="theme-light-blue">
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-light-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div>
-    <div class="overlay"></div>
-    <div class="search-bar">
-        <div class="search-icon">
-            <i class="material-icons">search</i>
-        </div>
-        <input type="text" placeholder="Search Titles & Authors">
-        <div class="close-search">
-            <i class="material-icons">close</i>
-        </div>
-    </div>
-    <nav class="navbar">
+    <nav class="navbar" style="margin-top: 30px;">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="javascript:void(0);" class="bars"></a>
-                <a href="#" class="lnkHome"><img src="logo.png" alt="Logo" /></a>
+                <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="#" class="bars"></a>
+                <a href="main.html"><img src="logo.png" alt="Logo" /></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li>
+                    <!-- <li>
                         <a href="#" style="font-size: 24px; font-weight: bolder;">BYGOZ E-LEARNING PRIVATE LIMITED</a>
-                    </li>
+                    </li> -->
                     <li>
-                        <a href="#" class="lnkHome" data-close="true">
+                        <a href="main.html" data-close="true">
                             <i class="material-icons">home</i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="js-search" data-close="true">
-                            <i class="material-icons">search</i>
                         </a>
                     </li>
                 </ul>
@@ -70,7 +38,7 @@
                     <li>
                         <a href="#" class="lnkLogin">
                             <i class="material-icons">shopping_cart</i>
-                            <span>Bygoz Store</span>
+                            <span>Cart</span>
                         </a>
                     </li>
                 </ul>
@@ -90,19 +58,16 @@
                                         <h4>Create account</h4>
                                         <br />
                                         <form action="#">
-                                            <input type="text" class="form-control" placeholder="Name *" /><br />
-                                            <input type="text" class="form-control" placeholder="Username *" /><br />
-                                            <input type="email" class="form-control" placeholder="Email *" /><br />
-                                            <input type="password" class="form-control"
-                                                placeholder="Password *" /><br />
-                                            <input type="password" class="form-control"
-                                                placeholder="Confirm Password *" /><br />
-                                            <input type="text" class="form-control" placeholder="Mobile Number *" />
+                                            <input type="text" id="txtName" class="form-control" placeholder="Name *" /><br />
+                                            <input type="text" id="txtUserName" class="form-control" placeholder="Username *" /><br />
+                                            <input type="email" id="txtEmail" class="form-control" placeholder="Email *" /><br />
+                                            <input type="password" id="txtPassword" class="form-control" placeholder="Password *" /><br />
+                                            <input type="password" id="txtCPassword" class="form-control" placeholder="Confirm Password *" /><br />
+                                            <input type="text" id="txtMobile" class="form-control" placeholder="Mobile Number *" />
                                             <br />
-                                            <button type="submit" class="btn btn-success"
-                                                style="width: 100%;">REGISTER</button>
+                                            <button type="submit" id="btnRegister" class="btn btn-success" style="width: 100%;">REGISTER</button>
                                             <br /><br />
-                                            <a href="#" class="lnkLogin">Already registered?</a>
+                                            <a href="#" id="aLogin">Already registered?</a>
                                         </form>
                                     </div>
                                 </div>
@@ -114,7 +79,12 @@
 
         </div>
     </section>
-    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
     <script src="THEME/plugins/jquery/jquery.min.js"></script>
     <script src="THEME/plugins/bootstrap/js/bootstrap.js"></script>
     <script src="THEME/plugins/bootstrap-select/js/bootstrap-select.js"></script>
@@ -123,12 +93,47 @@
     <script src="THEME/js/admin.js"></script>
     <script src="THEME/js/demo.js"></script>
     <script src="THEME/js/custom.js"></script>
+    <script src="menu.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
+            $("#aLogin").click(function(e) {
+                e.preventDefault();
+                window.location.href = "login.html";
+            });
 
+            $("#btnRegister").click(function(e) {
+                e.preventDefault();
+
+                var userMetaData = {
+                    "contact_number": $("#txtMobile").val(),
+                    "email": $("#txtEmail").val(),
+                    "id": "-1",
+                    "name": $("#txtName").val(),
+                    "password": $("#txtCPassword").val(),
+                    "username": $("#txtUserName").val()
+                }
+                var fd = new FormData();
+
+                fd.append("user_detail", JSON.stringify(userMetaData));
+
+                $.ajax({
+                    url: apiUrl + "save_user_profile",
+                    type: 'POST',
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        if (data.status === true) {
+                            console.log(data);
+                        }
+                    }
+                });
+            });
         });
     </script>
-    <script>if (window.module) module = window.module;</script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
 </body>
 
 </html>
