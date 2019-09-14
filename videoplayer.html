@@ -1,67 +1,20 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>BYGOZ E-LEARNING PRIVATE LIMITED</title>
-    <link rel="icon" href="THEME/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-    <link href="THEME/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="THEME/plugins/node-waves/waves.css" rel="stylesheet" />
-    <link href="THEME/plugins/animate-css/animate.css" rel="stylesheet" />
-    <link href="THEME/css/style.css" rel="stylesheet">
-    <link href="THEME/css/themes/all-themes.css" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="./node_modules/video.js/dist/video-js.min.css" />
 </head>
+<body>
+    <video
+    id="vid1"
+    class="video-js vjs-default-skin"
+    controls
+    autoplay
+    width="640" height="264" style="height: 100vh;width:100vw"
+    data-setup='{ "techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=xjS6SftYQaQ"}] }'
+  >
+  </video>
 
-<body class="theme-light-blue">
-    <div class="masterPage"> </div>
-    <section class="content">
-        <div class="container-fluid">
-
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="body">
-                            <div class="row" id="loadVideo">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <script>
-        if (typeof module === 'object') {
-            window.module = module;
-            module = undefined;
-        }
-    </script>
-    <script src="THEME/plugins/jquery/jquery.min.js"></script>
-    <script src="THEME/plugins/bootstrap/js/bootstrap.js"></script>
-    <script src="THEME/plugins/bootstrap-select/js/bootstrap-select.js"></script>
-    <script src="THEME/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-    <script src="THEME/plugins/node-waves/waves.js"></script>
-    <script src="THEME/js/admin.js"></script>
-    <script src="THEME/js/demo.js"></script>
-    <script src="THEME/js/custom.js"></script>
-    <script>
-        $(function() {
-            var linkURL = '';
-
-            if (window.localStorage.getItem("linkURL") != null) {
-                linkURL = window.localStorage.getItem("linkURL");
-            }
-
-            $("#loadVideo").html('<video controls="controls" src="' + linkURL + '" style="width: 100%;"></video>')
-        });
-    </script>
-    <script>
-        if (window.module) module = window.module;
-    </script>
+  <script src="./node_modules/video.js/dist/video.js"></script>
+  <script src="./youtube/Youtube.js"></script>
 </body>
-
 </html>
