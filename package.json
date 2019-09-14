@@ -21,6 +21,7 @@
     "electron-splashscreen": "^1.0.0",
     "fs-extra": "^7.0.1",
     "jquery": "^3.3.1",
-    "macaddress": "^0.2.9"
+    "macaddress": "^0.2.9",
+    "video.js": "^5.6.0 || ^6.2.8 || ^7.0.2"
   }
 }

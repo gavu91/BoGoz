@@ -129,7 +129,10 @@
             $.post(apiUrl + "sell-with-us", swuMetaData, function(data) {
                 console.log(data)
                 if (data.status === true) {
-
+                    alert(data.message); 
+                }
+                else{
+                    alert(data.errors.join("\n")); 
                 }
             });
         }
