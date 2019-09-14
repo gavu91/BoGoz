@@ -65,7 +65,7 @@
                                             <button type="submit" id="btnLogin" class="btn btn-success" style="width: 100%;">SIGN IN</button>
                                             <br /><br />
                                             <a href="#" id="aSignUp">Sign up</a>
-                                            <a href="#" id="aForgotPassword" style="float: right;">Forgot Password</a>
+                                            <!-- <a href="#" id="aForgotPassword" style="float: right;">Forgot Password</a> -->
                                         </form>
                                     </div>
                                 </div>
@@ -122,6 +122,7 @@
                         "password": $("#txtPassword").val()
                     }, function(data) {
                         if (data.status === true) {
+                            alert(data.data.gender);
                             window.localStorage.setItem("isAuthenticate", "Yes");
                             window.localStorage.setItem("ApiToken", data.data.api_token);
                             window.localStorage.setItem("UserID", data.data.id);

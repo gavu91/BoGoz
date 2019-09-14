@@ -34,9 +34,8 @@
                                             <input type="text" id="txtUserName" class="form-control" placeholder="Username *" /><br />
                                             <input type="email" id="txtEmail" class="form-control" placeholder="Email *" /><br />
                                             <input type="text" id="txtMobile" class="form-control" placeholder="Mobile Number *" /><br />
-                                            <input type="text" id="txtDOB" class="form-control" placeholder="Date of birth *" /><br />
-                                            <input type="radio" id="rbMale" name="gender" value="Male" />&nbsp;&nbsp;&nbsp;&nbsp; Male &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input type="radio" id="rbFemale" name="gender" value="Female" />&nbsp;&nbsp;&nbsp;&nbsp; Female<br /><br />
+                                            <input type="date" id="txtDOB" class="form-control" placeholder="Date of birth *" /><br />
+                                           
                                             <select id="ddlState">
                                                 <option>Select State</option>
                                                 <option value="Gujarat">Gujarat</option>
@@ -80,6 +79,20 @@
         var mobile = "";
         var username = "";
 
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
         $(function() {
             $(".dropdown-toggle").remove();
             $(".dropdown-menu").remove();
@@ -107,26 +120,25 @@
             }
             if (window.localStorage.getItem("uUsername") != null) {
                 username = window.localStorage.getItem("uUsername");
-            }
-
+            }  
             $("#txtUserName").val(username);
             $("#txtEmail").val(email);
             $("#txtName").val(name);
             $("#txtMobile").val(mobile);
-            $("#txtDOB").val(dob);
+            $("#txtDOB").val(formatDate(dob));
             $("#ddlState").val(state);
         });
 
         $("#btnUpdate").click(function(e) {
             e.preventDefault();
 
-            alert($("input[name='gender']:checked").val());
+            // alert($("input[name='gender']:checked").val());
 
             var userMetaData = {
                 "contact_number": $("#txtMobile").val(),
                 "dob": $("#txtDOB").val(),
                 "email": $("#txtEmail").val(),
-                "gender": $("input[name='gender']:checked").val(),
+                // "gender": $("input[name='gender']:checked").val(),
                 "name": $("#txtName").val(),
                 "state": $("#ddlState").val(),
                 "username": $("#txtUserName").val(),
@@ -146,7 +158,7 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    alert(data);
+                    alert(data.message);
                 }
             });
         });
