@@ -43,4 +43,10 @@ $(document).ready(function() {
             window.location.href = "main.html";
         });
     });
+
+    $('iframe').contents().find('.ToggleElementButton').css({
+        opacity: 0,
+        color: 'purple',
+        background: 'red'
+    });
 });
