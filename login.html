@@ -121,8 +121,7 @@
                         "email": $("#txtUsername").val(),
                         "password": $("#txtPassword").val()
                     }, function(data) {
-                        if (data.status === true) {
-                            alert(data.data.gender);
+                        if (data.status === true) { 
                             window.localStorage.setItem("isAuthenticate", "Yes");
                             window.localStorage.setItem("ApiToken", data.data.api_token);
                             window.localStorage.setItem("UserID", data.data.id);
