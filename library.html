@@ -81,7 +81,11 @@
                                     strRecommendedBook = strRecommendedBook + '<img src="' + frontCoverUrl + arrRecommendedBook[i].front_cover + '" style="height: 300px; width: 250px;" />';
                                     strRecommendedBook = strRecommendedBook + '<div class="caption">';
                                     strRecommendedBook = strRecommendedBook + '<h3>' + arrRecommendedBook[i].name + '</h3>';
-                                    strRecommendedBook = strRecommendedBook + '<p><button onclick="openPDf(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                    if (arrRecommendedBook[i].format == "video") {
+                                        strRecommendedBook = strRecommendedBook + '<p><button onclick="openVIDEO(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                    } else {
+                                        strRecommendedBook = strRecommendedBook + '<p><button onclick="openPDf(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                    }
                                     strRecommendedBook = strRecommendedBook + ' <button onclick="remove(\'' + arrRecommendedBook[i].book_id + '\')" class="btn btn-danger">REMOVE</button></p>';
                                     strRecommendedBook = strRecommendedBook + '</div></div></div>';
                                 }
@@ -116,6 +120,23 @@
             })
             win.setMenu(null);
             win.loadFile('viewer.html')
+        }
+
+        function openVIDEO(url) {
+            window.localStorage.removeItem("linkURL");
+            window.localStorage.setItem("linkURL", url);
+            const {
+                BrowserWindow
+            } = require('electron').remote
+            var remote = require('electron').remote;
+            var currentWindow = remote.getCurrentWindow();
+            const win = new BrowserWindow({
+                width: 1600,
+                height: 900,
+                parent: currentWindow
+            });
+            win.setMenu(null);
+            win.loadFile('videoplayer.html')
         }
 
         function remove(bookID) {

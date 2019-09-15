@@ -9,26 +9,24 @@ $(document).ready(function() {
         if (window.localStorage.getItem("isAuthenticate") != null && window.localStorage.getItem("isAuthenticate") != undefined) {
             $(".lnkPurchase").css("display", "flex");
             $(".lnkCart").css("display", "flex");
-            $(".lnkTranscationHistory").css("display", "flex");
             $(".lnkMyProfile").css("display", "flex");
             $(".lnkChangePassword").css("display", "flex");
             $(".lnkLogout").css("display", "flex");
+            $(".lnkLogin").css("display", "none");
+            if (window.localStorage.getItem("uName") != null && window.localStorage.getItem("uName") != undefined) {
+                $(".uFullname").text(window.localStorage.getItem("uName"));
+            }
+            if (window.localStorage.getItem("uEmail") != null && window.localStorage.getItem("uEmail") != undefined) {
+                $(".uEmailID").text(window.localStorage.getItem("uEmail"));
+            }
         } else {
             $(".lnkPurchase").css("display", "none");
             $(".lnkCart").css("display", "none");
-            $(".lnkTranscationHistory").css("display", "none");
             $(".lnkMyProfile").css("display", "none");
             $(".lnkChangePassword").css("display", "none");
             $(".lnkLogout").css("display", "none");
+            $(".lnkLogin").css("display", "flex");
         }
-
-        $(".lnkLogin").click(function() {
-            if (window.localStorage.getItem("isAuthenticate") != null && window.localStorage.getItem("isAuthenticate") != undefined) {
-                window.location.href = "main.html";
-            } else {
-                window.location.href = "login.html";
-            }
-        });
 
         $(".lnkLogout").click(function() {
             window.localStorage.removeItem("isAuthenticate");

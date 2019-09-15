@@ -25,9 +25,9 @@
 
                     </div>
                     <div class="col-md-8" id="authDetail">
-    
+
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="row clearfix">
                 <div class="col-md-12 bindAuthorDetail">
@@ -50,7 +50,7 @@
     <script src="THEME/plugins/node-waves/waves.js"></script>
     <script src="THEME/js/admin.js"></script>
     <script src="THEME/js/demo.js"></script>
-    <script src="THEME/js/custom.js"></script> 
+    <script src="THEME/js/custom.js"></script>
     <script>
         var lstBooks = [];
         var strAuthDetail = '';
@@ -87,7 +87,11 @@
                     strBookList = strBookList + '<h3>' + arrBookList[i].name + '</h3>';
 
                     if (filtered.length > 0) {
-                        strBookList = strBookList + '<p><button onclick="openPDf(\'' + arrBookList[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                        if (arrBookList[i].format == "video") {
+                            strBookList = strBookList + '<p><button onclick="openVIDEO(\'' + arrBookList[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                        } else {
+                            strBookList = strBookList + '<p><button onclick="openPDf(\'' + arrBookList[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                        }
                     } else {
                         strBookList = strBookList + '<p><button onclick="download(' + arrBookList[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
                     }
@@ -122,6 +126,23 @@
             })
             win.setMenu(null);
             win.loadFile('viewer.html')
+        }
+
+        function openVIDEO(url) {
+            window.localStorage.removeItem("linkURL");
+            window.localStorage.setItem("linkURL", url);
+            const {
+                BrowserWindow
+            } = require('electron').remote
+            var remote = require('electron').remote;
+            var currentWindow = remote.getCurrentWindow();
+            const win = new BrowserWindow({
+                width: 1600,
+                height: 900,
+                parent: currentWindow
+            });
+            win.setMenu(null);
+            win.loadFile('videoplayer.html')
         }
 
         function download(id) {

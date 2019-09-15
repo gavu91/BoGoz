@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link type="text/css" rel="stylesheet" href="./node_modules/video.js/dist/video-js.min.css" />
-</head>
-<body>
-    <video
-    id="vid1"
-    class="video-js vjs-default-skin"
-    controls
-    autoplay
-    width="640" height="264" style="height: 100vh;width:100vw"
-    data-setup='{ "techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=xjS6SftYQaQ"}] }'
-  >
-  </video>
 
-  <script src="./node_modules/video.js/dist/video.js"></script>
-  <script src="./youtube/Youtube.js"></script>
+<head>
+    <link type="text/css" rel="stylesheet" href="./node_modules/video.js/dist/video-js.min.css" />
+</head>
+
+<body>
+    <video id="vid1" class="video-js vjs-default-skin" controls autoplay width="640" height="264" style="height: 100vh;width:100vw" data-setup='{ "techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=xjS6SftYQaQ"}] }'></video>
+
+    <script src="./node_modules/video.js/dist/video.js"></script>
+    <script src="./youtube/Youtube.js"></script>
 </body>
+
 </html>

@@ -70,7 +70,11 @@
                             strTopNewBook = strTopNewBook + '<h3>' + arrTopNewBook[i].name + '</h3>';
 
                             if (filtered.length > 0) {
-                                strTopNewBook = strTopNewBook + '<p><button onclick="openPDf(\'' + arrTopNewBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                if (arrTopNewBook[i].format == "video") {
+                                    strTopNewBook = strTopNewBook + '<p><button onclick="openVIDEO(\'' + arrTopNewBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                } else {
+                                    strTopNewBook = strTopNewBook + '<p><button onclick="openPDf(\'' + arrTopNewBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                }
                             } else {
                                 strTopNewBook = strTopNewBook + '<p><button onclick="download(' + arrTopNewBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
                             }
@@ -98,7 +102,11 @@
                             strPopularBook = strPopularBook + '<h3>' + arrPopularBook[i].name + '</h3>';
 
                             if (filtered.length > 0) {
-                                strPopularBook = strPopularBook + '<p><button onclick="openPDf(\'' + arrPopularBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                if (arrPopularBook[i].format == "video") {
+                                    strPopularBook = strPopularBook + '<p><button onclick="openVIDEO(\'' + arrPopularBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                } else {
+                                    strPopularBook = strPopularBook + '<p><button onclick="openPDf(\'' + arrPopularBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                }
                             } else {
                                 strPopularBook = strPopularBook + '<p><button onclick="download(' + arrPopularBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
                             }
@@ -126,7 +134,11 @@
                             strRecommendedBook = strRecommendedBook + '<h3>' + arrRecommendedBook[i].name + '</h3>';
 
                             if (filtered.length > 0) {
-                                strRecommendedBook = strRecommendedBook + '<p><button onclick="openPDf(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                if (arrRecommendedBook[i].format == "video") {
+                                    strRecommendedBook = strRecommendedBook + '<p><button onclick="openVIDEO(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                } else {
+                                    strRecommendedBook = strRecommendedBook + '<p><button onclick="openPDf(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                }
                             } else {
                                 strRecommendedBook = strRecommendedBook + '<p><button onclick="download(' + arrRecommendedBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
                             }
@@ -154,7 +166,11 @@
                             strTopSellingBook = strTopSellingBook + '<h3>' + arrTopSellingBook[i].name + '</h3>';
 
                             if (filtered.length > 0) {
-                                strTopSellingBook = strTopSellingBook + '<p><button onclick="openPDf(\'' + arrTopSellingBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                if (arrTopSellingBook[i].format == "video") {
+                                    strTopSellingBook = strTopSellingBook + '<p><button onclick="openVIDEO(\'' + arrTopSellingBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                } else {
+                                    strTopSellingBook = strTopSellingBook + '<p><button onclick="openPDf(\'' + arrTopSellingBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                }
                             } else {
                                 strTopSellingBook = strTopSellingBook + '<p><button onclick="download(' + arrTopSellingBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
                             }
@@ -191,6 +207,23 @@
             })
             win.setMenu(null);
             win.loadFile('viewer.html')
+        }
+
+        function openVIDEO(url) {
+            window.localStorage.removeItem("linkURL");
+            window.localStorage.setItem("linkURL", url);
+            const {
+                BrowserWindow
+            } = require('electron').remote
+            var remote = require('electron').remote;
+            var currentWindow = remote.getCurrentWindow();
+            const win = new BrowserWindow({
+                width: 1600,
+                height: 900,
+                parent: currentWindow
+            });
+            win.setMenu(null);
+            win.loadFile('videoplayer.html')
         }
 
         function download(id) {

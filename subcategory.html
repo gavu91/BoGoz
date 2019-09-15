@@ -32,7 +32,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="body">
-                            <h4 style="color: #03A9F4;" id="b2"> </h4>
+                            <h3 style="color: #03A9F4;" id="b2"> </h3>
                         </div>
                     </div>
                 </div>
@@ -71,13 +71,13 @@
                     categoryName = window.localStorage.getItem("categoryName");
 
                     if (store == "video") {
-                        $("#b2").html("<a href='store.html'>Videos</a> > <a href='category.html'>" + categoryName + "</a> > SUB CATEGORY");
+                        $("#b2").html("<a href='store.html'>Store</a> > <a href='category.html'>Videos</a> > " + categoryName);
                     }
                     if (store == "pdf") {
-                        $("#b2").html("<a href='store.html'>E-Books</a> > <a href='category.html'>" + categoryName + "</a> > SUB CATEGORY");
+                        $("#b2").html("<a href='store.html'>Store</a> > <a href='category.html'>E-Books</a> > " + categoryName);
                     }
                     if (store == "epub") {
-                        $("#b2").html("<a href='store.html'>Books</a> > <a href='category.html'>" + categoryName + "</a> > SUB CATEGORY");
+                        $("#b2").html("<a href='store.html'>Store</a> > <a href='category.html'>Books</a> > " + categoryName);
                     }
                 }
             }
