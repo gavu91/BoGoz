@@ -3,7 +3,6 @@ const apiUrl = 'http://www.bygoz.com/api/';
 const pdfUrl = 'http://bygoz.com/uploads/book/pdf/';
 const imageUrl = 'http://www.bygoz.com/uploads/profile-images/author/';
 const frontCoverUrl = 'http://bygoz.com/uploads/book/front_cover/';
-
 $(document).ready(function() {
     $(".masterPage").load("masterpage.html", function() {
         if (window.localStorage.getItem("isAuthenticate") != null && window.localStorage.getItem("isAuthenticate") != undefined) {
@@ -42,9 +41,5 @@ $(document).ready(function() {
         });
     });
 
-    $('iframe').contents().find('.ToggleElementButton').css({
-        opacity: 0,
-        color: 'purple',
-        background: 'red'
-    });
-});
+   
+}); 

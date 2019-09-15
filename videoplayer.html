@@ -6,10 +6,33 @@
 </head>
 
 <body>
-    <video id="vid1" class="video-js vjs-default-skin" controls autoplay width="640" height="264" style="height: 100vh;width:100vw" data-setup='{ "techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=xjS6SftYQaQ"}] }'></video>
-
-    <script src="./node_modules/video.js/dist/video.js"></script>
-    <script src="./youtube/Youtube.js"></script>
+    <video id="my_video_1" autoplay  class="video-js vjs-default-skin" style="width:100%;height:100%"
+    controls preload="none" poster='http://video-js.zencoder.com/oceans-clip.jpg'
+>
+</video> 
+<script>
+    if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }
+</script>
+<script>
+var videojs = require("video.js"); 
+videojs('my_video_1', { 
+    "aspectRatio":"640:267", 
+    "playbackRates": [1, 1.5, 2,3,4],
+    fluid:true,
+    responsive:true, 
+"userActions" : {hotkeys:true} 
+}, function() {
+  var player = this; 
+  player.src("http://bygoz.com/uploads/book/video/" + window.localStorage.getItem("linkURL"));
+  player.play();
+});
+</script>
+  <script>
+    if (window.module) module = window.module;
+</script>
 </body>
 
 </html>
