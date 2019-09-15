@@ -107,9 +107,9 @@
 
                         if (filtered.length > 0) {
                             if (arrBookList[i].format == "video") {
-                                strBookList = strBookList + '<p><button onclick="openVIDEO(\'' + arrBookList[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strBookList = strBookList + '<p><button onclick="openVIDEO(' + arrBookList[i].book_id + ',\'' + arrBookList[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             } else {
-                                strBookList = strBookList + '<p><button onclick="openPDf(\'' + arrBookList[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strBookList = strBookList + '<p><button onclick="openPDf(' + arrBookList[i].book_id + ',\'' + arrBookList[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             }
                         } else {
                             strBookList = strBookList + '<p><button onclick="download(' + arrBookList[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
@@ -131,7 +131,9 @@
             window.location.href = "bookdetail.html";
         }
 
-        function openPDf(url) {
+        function openPDf(id, url) {
+            window.localStorage.removeItem("rBookID");
+            window.localStorage.setItem("rBookID", id);
             window.localStorage.removeItem("pdfUrl");
             window.localStorage.setItem("pdfUrl", url);
             const {
@@ -148,7 +150,9 @@
             win.loadFile('viewer.html')
         }
 
-        function openVIDEO(url) {
+        function openVIDEO(id, url) {
+            window.localStorage.removeItem("rBookID");
+            window.localStorage.setItem("rBookID", id);
             window.localStorage.removeItem("linkURL");
             window.localStorage.setItem("linkURL", url);
             const {
@@ -166,6 +170,9 @@
         }
 
         function download(id) {
+            window.localStorage.removeItem("rBookID");
+            window.localStorage.setItem("rBookID", id);
+
             lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
 
             var filtered = lstBooks.filter(function(value) {
@@ -178,6 +185,7 @@
                 lstBooks.push(id.toString());
                 window.localStorage.setItem("lstBooks", JSON.stringify(lstBooks));
                 alert("Books successfully downloaded.");
+                window.location.reload();
             }
         }
     </script>

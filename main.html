@@ -21,6 +21,9 @@
         <div class="container-fluid">
 
             <div class="row clearfix">
+                <div class="col-md-12 bindRecentData">
+
+                </div>
                 <div class="col-md-12 bindDashboardData">
 
                 </div>
@@ -47,16 +50,70 @@
         var lstBooks = [];
 
         $(function() {
+            var rBookID = 0;
             var macaddress = require('macaddress');
+            lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
+
             macaddress.one(function(err, mac) {
                 console.log(mac);
                 window.localStorage.setItem("getMacAddress", mac);
             });
 
+            if (window.localStorage.getItem("rBookID") != null) {
+                rBookID = window.localStorage.getItem("rBookID");
+
+                $.post(apiUrl + "book_detail", {
+                    book_id: rBookID
+                }, function(data) {
+                    if (data.status === true) {
+                        // Recent Books
+                        var strRecentBook = '';
+                        var arrRecentBook = data.book_detail;
+                        strRecentBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                        strRecentBook = strRecentBook + '<h4 style="color: #03A9F4;">RECENTLY OPENED</h4></div>';
+
+                        for (i = 0; i < arrRecentBook.length; i++) {
+                            var filtered = lstBooks.filter(function(value) {
+                                return value == arrRecentBook[i].book_id;
+                            });
+
+                            strRecentBook = strRecentBook + '<div class="col-md-3"><div class="thumbnail">';
+                            strRecentBook = strRecentBook + '<img src="' + frontCoverUrl + arrRecentBook[i].front_cover + '" style="height: 300px; width: 250px;" />';
+                            strRecentBook = strRecentBook + '<div class="caption">';
+                            strRecentBook = strRecentBook + '<h3>' + arrRecentBook[i].name + '</h3>';
+
+                            if (filtered.length > 0) {
+                                if (arrRecentBook[i].format == "video") {
+                                    strRecentBook = strRecentBook + '<p><button onclick="openVIDEO(\'' + arrRecentBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                } else {
+                                    strRecentBook = strRecentBook + '<p><button onclick="openPDf(\'' + arrRecentBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                }
+                            } else {
+                                strRecentBook = strRecentBook + '<p><button onclick="download(' + arrRecentBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
+                            }
+
+                            strRecentBook = strRecentBook + ' <button onclick="bookdetail(' + arrRecentBook[i].book_id + ')" class="btn btn-primary">BUY NOW</button></p>';
+                            strRecentBook = strRecentBook + '</div></div></div>';
+                        }
+
+                        strRecentBook = strRecentBook + '</div></div></div>';
+                        $(".bindRecentData").append(strRecentBook);
+                    }
+                });
+            } else {
+                // Recent Books
+                var strRecentBook = '';
+                strRecentBook = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                strRecentBook = strRecentBook + '<h4 style="color: #03A9F4;">RECENTLY OPENED</h4>';
+                strRecentBook = strRecentBook + '<b style="font-size: 16px;">You have no open itmes</b><br /><br />';
+                strRecentBook = strRecentBook + '<span>Open one of your items, or scroll down to find something new.</span><br /><br />';
+                strRecentBook = strRecentBook + '<a href="store.html" class="btn btn-primary">Browse Now</a>';
+                strRecentBook = strRecentBook + '</div></div></div></div>';
+                $(".bindRecentData").append(strRecentBook);
+            }
+
             $.post(apiUrl + "dashboard_detail", function(data) {
                 if (data.status === true) {
-                    lstBooks = JSON.parse(window.localStorage.getItem("lstBooks")) || [];
-
                     // Top Newest Books
                     var strTopNewBook = '';
                     var arrTopNewBook = data.top_search_book;
@@ -79,9 +136,9 @@
 
                         if (filtered.length > 0) {
                             if (arrTopNewBook[i].format == "video") {
-                                strTopNewBook = strTopNewBook + '<p><button onclick="openVIDEO(\'' + arrTopNewBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strTopNewBook = strTopNewBook + '<p><button onclick="openVIDEO(' + arrTopNewBook[i].book_id + ',\'' + arrTopNewBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             } else {
-                                strTopNewBook = strTopNewBook + '<p><button onclick="openPDf(\'' + arrTopNewBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strTopNewBook = strTopNewBook + '<p><button onclick="openPDf(' + arrTopNewBook[i].book_id + ',\'' + arrTopNewBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             }
                         } else {
                             strTopNewBook = strTopNewBook + '<p><button onclick="download(' + arrTopNewBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
@@ -116,9 +173,9 @@
 
                         if (filtered.length > 0) {
                             if (arrPopularBook[i].format == "video") {
-                                strPopularBook = strPopularBook + '<p><button onclick="openVIDEO(\'' + arrPopularBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strPopularBook = strPopularBook + '<p><button onclick="openVIDEO(' + arrPopularBook[i].book_id + ',\'' + arrPopularBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             } else {
-                                strPopularBook = strPopularBook + '<p><button onclick="openPDf(\'' + arrPopularBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strPopularBook = strPopularBook + '<p><button onclick="openPDf(' + arrPopularBook[i].book_id + ',\'' + arrPopularBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             }
                         } else {
                             strPopularBook = strPopularBook + '<p><button onclick="download(' + arrPopularBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
@@ -153,9 +210,9 @@
 
                         if (filtered.length > 0) {
                             if (arrRecommendedBook[i].format == "video") {
-                                strRecommendedBook = strRecommendedBook + '<p><button onclick="openVIDEO(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strRecommendedBook = strRecommendedBook + '<p><button onclick="openVIDEO(' + arrRecommendedBook[i].book_id + ',\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             } else {
-                                strRecommendedBook = strRecommendedBook + '<p><button onclick="openPDf(\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strRecommendedBook = strRecommendedBook + '<p><button onclick="openPDf(' + arrRecommendedBook[i].book_id + ',\'' + arrRecommendedBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             }
                         } else {
                             strRecommendedBook = strRecommendedBook + '<p><button onclick="download(' + arrRecommendedBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
@@ -190,9 +247,9 @@
 
                         if (filtered.length > 0) {
                             if (arrTopSellingBook[i].format == "video") {
-                                strTopSellingBook = strTopSellingBook + '<p><button onclick="openVIDEO(\'' + arrTopSellingBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strTopSellingBook = strTopSellingBook + '<p><button onclick="openVIDEO(' + arrTopSellingBook[i].book_id + ',\'' + arrTopSellingBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             } else {
-                                strTopSellingBook = strTopSellingBook + '<p><button onclick="openPDf(\'' + arrTopSellingBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
+                                strTopSellingBook = strTopSellingBook + '<p><button onclick="openPDf(' + arrTopSellingBook[i].book_id + ',\'' + arrTopSellingBook[i].file_path + '\')" class="btn btn-success">VIEW</button>';
                             }
                         } else {
                             strTopSellingBook = strTopSellingBook + '<p><button onclick="download(' + arrTopSellingBook[i].book_id + ')" class="btn btn-success">DOWNLOAD</button>';
@@ -220,7 +277,9 @@
             window.location.href = "bookdetail.html";
         }
 
-        function openPDf(url) {
+        function openPDf(id, url) {
+            window.localStorage.removeItem("rBookID");
+            window.localStorage.setItem("rBookID", id);
             window.localStorage.removeItem("pdfUrl");
             window.localStorage.setItem("pdfUrl", url);
             const {
@@ -237,7 +296,9 @@
             win.loadFile('viewer.html')
         }
 
-        function openVIDEO(url) {
+        function openVIDEO(id, url) {
+            window.localStorage.removeItem("rBookID");
+            window.localStorage.setItem("rBookID", id);
             window.localStorage.removeItem("linkURL");
             window.localStorage.setItem("linkURL", url);
             const {
@@ -267,8 +328,8 @@
                 lstBooks.push(id.toString());
                 window.localStorage.setItem("lstBooks", JSON.stringify(lstBooks));
                 alert("Books successfully downloaded.");
+                window.location.reload();
             }
-            //window.localStorage.removeItem("lstBooks")
         }
     </script>
 
