@@ -35,7 +35,7 @@
                                             <input type="email" id="txtEmail" class="form-control" placeholder="Email *" /><br />
                                             <input type="text" id="txtMobile" class="form-control" placeholder="Mobile Number *" /><br />
                                             <input type="date" id="txtDOB" class="form-control" placeholder="Date of birth *" /><br />
-                                           
+
                                             <select id="ddlState">
                                                 <option>Select State</option>
                                                 <option value="Gujarat">Gujarat</option>
@@ -79,15 +79,17 @@
         var mobile = "";
         var username = "";
 
+        loadMaster("lnkMyProfile");
+
         function formatDate(date) {
             var d = new Date(date),
                 month = '' + (d.getMonth() + 1),
                 day = '' + d.getDate(),
                 year = d.getFullYear();
 
-            if (month.length < 2) 
+            if (month.length < 2)
                 month = '0' + month;
-            if (day.length < 2) 
+            if (day.length < 2)
                 day = '0' + day;
 
             return [year, month, day].join('-');
@@ -120,7 +122,7 @@
             }
             if (window.localStorage.getItem("uUsername") != null) {
                 username = window.localStorage.getItem("uUsername");
-            }  
+            }
             $("#txtUserName").val(username);
             $("#txtEmail").val(email);
             $("#txtName").val(name);

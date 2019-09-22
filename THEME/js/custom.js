@@ -3,8 +3,12 @@ const apiUrl = 'http://www.bygoz.com/api/';
 const pdfUrl = 'http://bygoz.com/uploads/book/pdf/';
 const imageUrl = 'http://www.bygoz.com/uploads/profile-images/author/';
 const frontCoverUrl = 'http://bygoz.com/uploads/book/front_cover/';
-$(document).ready(function() {
+
+function loadMaster(activePage) {
     $(".masterPage").load("masterpage.html", function() {
+        $(".menuList").removeClass("active");
+        $("." + activePage).addClass("active");
+
         if (window.localStorage.getItem("isAuthenticate") != null && window.localStorage.getItem("isAuthenticate") != undefined) {
             $(".lnkPurchase").css("display", "flex");
             $(".lnkCart").css("display", "flex");
@@ -40,6 +44,4 @@ $(document).ready(function() {
             window.location.href = "main.html";
         });
     });
-
-   
-}); 
+}

@@ -49,6 +49,8 @@
     <script src="THEME/js/custom.js"></script>
 
     <script>
+        loadMaster("");
+
         var getApiToken = '';
         var bookID = "";
         var UserID = 0;
@@ -69,6 +71,7 @@
             $.post(apiUrl + "book_detail", {
                 book_id: bookID
             }, function(data) {
+                console.log(data);
                 if (data.status === true) {
                     var strBookDetail = '';
                     var arrBookDetail = data.book_detail;
@@ -124,9 +127,30 @@
             if (UserID == 0) {
                 window.location.href = "login.html";
             } else {
-                window.localStorage.removeItem("bookID");
-                window.localStorage.setItem("bookID", id);
-                window.location.href = "checkout.html";
+                $.post(apiUrl + "book_detail", {
+                    book_id: id
+                }, function(data) {
+                    if (data.status === true) {
+                        var arrBookDetail = data.book_detail;
+                        var arrAuthorDetail = data.author_detail;
+                        var mainPrice = Number(arrBookDetail[0].unit_price);
+                        var discount = Number(arrBookDetail[0].discount);
+                        if (discount > 0) {
+                            var discPrice = mainPrice - ((mainPrice * discount) / 100);
+                            mainPrice = discPrice;
+                        }
+
+                        window.localStorage.setItem("cBookID", id);
+                        window.localStorage.setItem("cFrontCover", frontCoverUrl + arrBookDetail[0].front_cover);
+                        window.localStorage.setItem("cBookName", arrBookDetail[0].name);
+                        window.localStorage.setItem("cAuthorName", arrAuthorDetail.name);
+                        window.localStorage.setItem("cTXN_AMOUNT", mainPrice);
+                        window.localStorage.setItem("cShippingCost", arrBookDetail[0].shipping_cost);
+                        window.localStorage.setItem("cInStock", arrBookDetail[0].in_stock);
+
+                        window.location.href = "checkout.html";
+                    }
+                });
             }
         }
 

@@ -50,6 +50,8 @@
         var lstBooks = [];
         var strRecommendedBook = "";
 
+        loadMaster("lnkLibrary");
+
         function bindDownloads() {
             $(".bindLibraryList").html('');
             if (window.localStorage.getItem("lstBooks") != null) {

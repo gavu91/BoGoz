@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>BYGOZ E-LEARNING PRIVATE LIMITED</title>
+    <link rel="icon" href="THEME/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link href="THEME/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="THEME/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="THEME/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="THEME/css/style.css" rel="stylesheet">
+    <link href="THEME/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-light-blue">
+    <div class="masterPage"> </div>
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row clearfix">
+                <div class="col-md-12 bindPurchaseData">
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="THEME/plugins/jquery/jquery.min.js"></script>
+    <script src="THEME/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="THEME/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="THEME/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="THEME/plugins/node-waves/waves.js"></script>
+    <script src="THEME/js/admin.js"></script>
+    <script src="THEME/js/demo.js"></script>
+    <script src="THEME/js/custom.js"></script>
+
+    <script>
+        var getApiToken = '';
+
+        loadMaster("lnkPurchase");
+
+        $(function() {
+            if (window.localStorage.getItem("ApiToken") != null) {
+                getApiToken = window.localStorage.getItem("ApiToken");
+            }
+        });
+
+        $(function() {
+            $.ajax({
+                url: apiUrl + "purchase_book",
+                method: 'GET',
+                headers: {
+                    "Authorization": "Bearer " + getApiToken,
+                },
+                success: function(data) {
+                    if (data.status === true) {
+                        var arrBookIds = data.purchase_data;
+                        var strBookList = "";
+
+                        strBookList = '<div class="card"><div class="body"><div class="row"><div class="col-md-12">';
+                        strBookList = strBookList + '<h3 style="color: #03A9F4;">Purchase Books</h3></div>';
+
+                        for (i = 0; i < arrBookIds.length; i++) {
+                            var bookID = arrBookIds[i].book_id;
+
+                            $.post(apiUrl + "book_detail", {
+                                book_id: bookID
+                            }, function(data) {
+                                if (data.status === true) {
+                                    var arrBookDetail = data.book_detail;
+
+                                    strBookList = strBookList + '<div class="col-md-3"><div class="thumbnail">';
+                                    strBookList = strBookList + '<img src="' + frontCoverUrl + arrBookDetail[i].front_cover + '" style="height: 300px; width: 250px;" />';
+                                    strBookList = strBookList + '<div class="caption">';
+                                    strBookList = strBookList + '<h3>' + arrBookDetail[i].name + '</h3>';
+
+                                    if (arrBookDetail[i].format == "video") {
+                                        strBookList = strBookList + '<p><button onclick="openVIDEO(' + bookID + ',\'' + arrBookDetail[i].file_path + '\')" class="btn btn-success">VIEW</button></p>';
+                                    } else {
+                                        strBookList = strBookList + '<p><button onclick="openPDf(' + bookID + ',\'' + arrBookDetail[i].file_path + '\')" class="btn btn-success">VIEW</button></p>';
+                                    }
+
+                                    strBookList = strBookList + '</div></div></div>';
+                                }
+                            });
+                        }
+
+                        strBookList = strBookList + '</div></div></div>';
+                        $(".bindPurchaseData").append(strBookList);
+                    }
+                }
+            });
+        });
+
+        function openPDf(id, url) {
+            window.localStorage.removeItem("rBookID");
+            window.localStorage.setItem("rBookID", id);
+            window.localStorage.removeItem("pdfUrl");
+            window.localStorage.setItem("pdfUrl", url);
+            const {
+                BrowserWindow
+            } = require('electron').remote
+            var remote = require('electron').remote;
+            var currentWindow = remote.getCurrentWindow();
+            const win = new BrowserWindow({
+                width: 1600,
+                height: 900,
+                parent: currentWindow
+            });
+            win.setMenu(null);
+            win.loadFile('viewer.html')
+        }
+
+        function openVIDEO(id, url) {
+            window.localStorage.removeItem("rBookID");
+            window.localStorage.setItem("rBookID", id);
+            window.localStorage.removeItem("linkURL");
+            window.localStorage.setItem("linkURL", url);
+            const {
+                BrowserWindow
+            } = require('electron').remote
+            var remote = require('electron').remote;
+            var currentWindow = remote.getCurrentWindow();
+            const win = new BrowserWindow({
+                width: 1600,
+                height: 900,
+                parent: currentWindow
+            });
+            win.setMenu(null);
+            win.loadFile('videoplayer.html')
+        }
+    </script>
+
+    <script>
+        if (window.module) module = window.module;
+    </script>
+</body>
+
+</html>

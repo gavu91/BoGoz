@@ -115,6 +115,8 @@
     <script src="THEME/js/custom.js"></script>
 
     <script>
+        loadMaster("lnkSellWithUs");
+
         function formSubmit() {
             var swuMetaData = {
                 "brand_name": $("#BrandName").val(),
@@ -129,10 +131,9 @@
             $.post(apiUrl + "sell-with-us", swuMetaData, function(data) {
                 console.log(data)
                 if (data.status === true) {
-                    alert(data.message); 
-                }
-                else{
-                    alert(data.errors.join("\n")); 
+                    alert(data.message);
+                } else {
+                    alert(data.errors.join("\n"));
                 }
             });
         }

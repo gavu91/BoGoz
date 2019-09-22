@@ -17,6 +17,7 @@
     "custom-electron-titlebar": "^3.1.0",
     "download": "^7.1.0",
     "electron": "^4.1.1",
+    "electron-open-link-in-browser": "^1.0.2",
     "electron-packager": "^13.1.1",
     "electron-splashscreen": "^1.0.0",
     "fs-extra": "^7.0.1",

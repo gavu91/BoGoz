@@ -47,6 +47,8 @@
         var lstBooks = [];
         var booksItem = "";
 
+        loadMaster("lnkHome");
+
         $(function() {
             $.post(apiUrl + "dashboard_detail", function(data) {
                 if (data.status === true) {

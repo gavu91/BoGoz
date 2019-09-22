@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="THEME/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="THEME/plugins/jquery-steps/jquery.steps.css" rel="stylesheet">
     <link href="THEME/plugins/node-waves/waves.css" rel="stylesheet" />
     <link href="THEME/plugins/animate-css/animate.css" rel="stylesheet" />
     <link href="THEME/css/style.css" rel="stylesheet">
@@ -23,6 +24,128 @@
             <div class="row clearfix">
                 <div class="col-md-12">
                     <div class="card">
+
+                        <div class="modal fade" id="addressModal" tabindex="-1" role="dialog" style="top: 100px;">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="largeModalLabel">Shipping Address</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" id="hdnAddressID" value="0" /><br/>
+                                        <input type="text" class="form-control" id="txtName" placeholder="Name *" /><br/>
+                                        <input type="text" class="form-control" id="txtAL1" placeholder="Address Line 1 *" /><br/>
+                                        <input type="text" class="form-control" id="txtAL2" placeholder="Address Line 2 *" /><br/>
+                                        <input type="text" class="form-control" id="txtCity" placeholder="City *" /><br/>
+                                        <input type="number" class="form-control" id="txtPincode" placeholder="Pincode *" /><br/>
+                                        <input type="text" class="form-control" id="txtState" placeholder="State *" /><br/>
+                                        <input type="number" class="form-control" id="txtMobile" placeholder="Mobile *" /><br/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="btnSaveAddress" class="btn btn-success waves-effect">SAVE CHANGES</button>
+                                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="checkoutDetails" style="padding: 3%;">
+                            <h3>BAG</h3>
+                            <section>
+                                <b>Items (1)</b>
+                                <div class="card" style="padding: 2%;">
+                                    <div class="row">
+                                        <div class="col-md-3 cFrontCover">
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <h4 class="cBookName"></h4>
+                                            <p class="cAuthorName"></p>
+                                            <p class="cInStock"></p>
+                                            <p class="cTXN_AMOUNT"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <b>Price Details</b>
+                                <div class="card" style="padding: 2%;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span>Total MRP</span>
+                                            <span class="cTXN_AMOUNT" style="float: right;"></span>
+                                            <br/>
+                                            <span>Shipping Tax</span>
+                                            <span class="cShippingCost" style="float: right;"></span>
+                                            <br/>
+                                            <hr>
+                                            <b>Total</b>
+                                            <b class="TXN_AMOUNT" style="float: right;"></b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <h3>ADDRESS</h3>
+                            <section>
+                                <b>Address</b>
+                                <div class="card loadAddressList" style="padding: 2%;">
+
+                                </div>
+                                <div class="card" style="padding: 2%;">
+                                    <a href="#" onclick="addAddress()">Add New Address</a>
+                                </div>
+                            </section>
+                            <h3>CONFIRM ORDER</h3>
+                            <section>
+                                <b>Order Detail</b>
+                                <div class="card" style="padding: 2%;">
+                                    <div class="row">
+                                        <div class="col-md-3 cFrontCover">
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <h4 class="cBookName"></h4>
+                                            <p class="cOrderDate"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <b>Deliverd To</b>
+                                <div class="card" style="padding: 2%;">
+                                    <div class="row">
+                                        <div class="col-md-12 loadAddressList2">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <b>Price Details</b>
+                                <div class="card" style="padding: 2%;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span>Total MRP</span>
+                                            <span class="cTXN_AMOUNT" style="float: right;"></span>
+                                            <br/>
+                                            <span>Shipping Tax</span>
+                                            <span class="cShippingCost" style="float: right;"></span>
+                                            <br/>
+                                            <hr>
+                                            <b>Total</b>
+                                            <b class="TXN_AMOUNT" style="float: right;"></b>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <b>Payment Options</b>
+                                <div class="card" style="padding: 2%;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span>Paytm Pay</span>
+                                            <span style="float: right; margin-right: 2%;"><input id="rbPayPayTm" type="radio" /></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
 
                     </div>
                 </div>
@@ -39,11 +162,282 @@
     <script src="THEME/plugins/jquery/jquery.min.js"></script>
     <script src="THEME/plugins/bootstrap/js/bootstrap.js"></script>
     <script src="THEME/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="THEME/plugins/jquery-steps/jquery.steps.js"></script>
     <script src="THEME/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
     <script src="THEME/plugins/node-waves/waves.js"></script>
     <script src="THEME/js/admin.js"></script>
     <script src="THEME/js/demo.js"></script>
     <script src="THEME/js/custom.js"></script>
+    <script>
+        loadMaster("");
+
+        var BookID = 0;
+        var EMAIL = "";
+        var MOBILE_NO = "";
+        var getApiToken = ""
+        var TXN_AMOUNT = 0;
+        var isStock = true;
+        var AddressID = 0;
+
+        $(function() {
+            if (window.localStorage.getItem("cBookID") != null) {
+                BookID = window.localStorage.getItem("cBookID");
+            }
+            if (window.localStorage.getItem("ApiToken") != null) {
+                getApiToken = window.localStorage.getItem("ApiToken");
+            }
+            if (window.localStorage.getItem("uEmail") != null) {
+                EMAIL = window.localStorage.getItem("uEmail");
+            }
+            if (window.localStorage.getItem("uMobile") != null) {
+                MOBILE_NO = window.localStorage.getItem("uMobile");
+            }
+            if (window.localStorage.getItem("cInStock") != null) {
+                if (Number(window.localStorage.getItem("cInStock")) == 0) {
+                    isStock = false;
+                    $(".cInStock").html('<b style="color: red;">Out of stock.</b>');
+                }
+            }
+            if (window.localStorage.getItem("cFrontCover") != null) {
+                $(".cFrontCover").html('<img src="' + window.localStorage.getItem("cFrontCover") + '" style="height: 180px; width: 120px;" />');
+            }
+            if (window.localStorage.getItem("cBookName") != null) {
+                $(".cBookName").html(window.localStorage.getItem("cBookName"));
+            }
+            if (window.localStorage.getItem("cAuthorName") != null) {
+                $(".cAuthorName").html(window.localStorage.getItem("cAuthorName"));
+            }
+            if (window.localStorage.getItem("cTXN_AMOUNT") != null) {
+                $(".cTXN_AMOUNT").html(Number(window.localStorage.getItem("cTXN_AMOUNT")));
+
+                if (window.localStorage.getItem("cShippingCost") != null) {
+                    var sc = Number(window.localStorage.getItem("cShippingCost"));
+                    if (sc == 0 || isNaN(sc)) {
+                        sc = 0;
+                        $(".cShippingCost").html('Free');
+                    } else {
+                        $(".cShippingCost").html(sc);
+                    }
+
+                    TXN_AMOUNT = Number(window.localStorage.getItem("cTXN_AMOUNT")) + sc;
+                    $(".TXN_AMOUNT").html(TXN_AMOUNT);
+                } else {
+                    TXN_AMOUNT = Number(window.localStorage.getItem("cTXN_AMOUNT"));
+                    $(".TXN_AMOUNT").html(TXN_AMOUNT);
+                }
+            }
+
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            var today = dd + '-' + mm + '-' + yyyy;
+            $(".cOrderDate").html("Order Date: " + today);
+
+            $.ajax({
+                url: apiUrl + "get/address",
+                method: 'POST',
+                headers: {
+                    "Authorization": "Bearer " + getApiToken,
+                },
+                success: function(data) {
+                    var lstAddress = "";
+                    var arrAddressList = data.data;
+
+                    for (i = 0; i < arrAddressList.length; i++) {
+                        lstAddress = lstAddress + '<div class="row">';
+                        lstAddress = lstAddress + '<div class="col-md-1"><input type="radio" onclick=rbAddress(this) name="rbAddress" value="' + arrAddressList[i].user_address_id + '"  /></div>';
+                        lstAddress = lstAddress + '<div class="col-md-8">';
+                        lstAddress = lstAddress + '<b>' + arrAddressList[i].name + '</b><br/>';
+                        lstAddress = lstAddress + '<span>' + arrAddressList[i].user_address + '</span><br/>';
+                        lstAddress = lstAddress + '<span>' + arrAddressList[i].locality + '</span><br/>';
+                        lstAddress = lstAddress + '<span>' + arrAddressList[i].city + ', ' + arrAddressList[i].zipcode + '</span><br/>';
+                        lstAddress = lstAddress + '<span>' + arrAddressList[i].state + '</span><br/>';
+                        lstAddress = lstAddress + '<span>Mobile: ' + arrAddressList[i].contact_number + '</span>';
+                        lstAddress = lstAddress + '</div>';
+                        lstAddress = lstAddress + '<div class="col-md-3"><a href="#" onclick=editAddress(' + arrAddressList[i].user_address_id + ') class="btn btn-info">Edit</a> <a href="#" onclick=removeAddress(' + arrAddressList[i].user_address_id + ') class="btn btn-danger">Remove</a></div>';
+                        lstAddress = lstAddress + '</div>';
+                    }
+
+                    $(".loadAddressList").html(lstAddress);
+                }
+            });
+        });
+
+        function rbAddress(checkedRadio) {
+            AddressID = checkedRadio.value;
+
+            $.ajax({
+                url: apiUrl + "get/address",
+                method: 'POST',
+                headers: {
+                    "Authorization": "Bearer " + getApiToken,
+                },
+                success: function(data) {
+                    var lstAddress = "";
+                    var arrAddressList = data.data;
+
+                    for (i = 0; i < arrAddressList.length; i++) {
+                        if (arrAddressList[i].user_address_id == AddressID) {
+                            lstAddress = lstAddress + '<b>' + arrAddressList[i].name + '</b><br/>';
+                            lstAddress = lstAddress + '<span>' + arrAddressList[i].user_address + '</span><br/>';
+                            lstAddress = lstAddress + '<span>' + arrAddressList[i].locality + '</span><br/>';
+                            lstAddress = lstAddress + '<span>' + arrAddressList[i].city + ', ' + arrAddressList[i].zipcode + '</span><br/>';
+                            lstAddress = lstAddress + '<span>' + arrAddressList[i].state + '</span><br/>';
+                            lstAddress = lstAddress + '<span>Mobile: ' + arrAddressList[i].contact_number + '</span>';
+                        }
+                    }
+
+                    $(".loadAddressList2").html(lstAddress);
+                }
+            });
+        }
+
+        function addAddress() {
+            $("#hdnAddressID").val(0);
+            $("#txtCity").val("");
+            $("#txtMobile").val("");
+            $("#txtAL2").val("");
+            $("#txtName").val("");
+            $("#txtState").val("");
+            $("#txtAL1").val("");
+            $("#txtPincode").val("");
+
+            $('#addressModal').modal('show');
+        }
+
+        function editAddress(id) {
+            $.ajax({
+                url: apiUrl + "get/address",
+                method: 'POST',
+                headers: {
+                    "Authorization": "Bearer " + getApiToken,
+                },
+                success: function(data) {
+                    var arrAddressList = data.data;
+
+                    for (i = 0; i < arrAddressList.length; i++) {
+                        if (arrAddressList[i].user_address_id == id) {
+                            $("#hdnAddressID").val(id);
+                            $("#txtCity").val(arrAddressList[i].city);
+                            $("#txtMobile").val(arrAddressList[i].contact_number);
+                            $("#txtAL2").val(arrAddressList[i].locality);
+                            $("#txtName").val(arrAddressList[i].name);
+                            $("#txtState").val(arrAddressList[i].state);
+                            $("#txtAL1").val(arrAddressList[i].user_address);
+                            $("#txtPincode").val(arrAddressList[i].zipcode);
+
+                            $('#addressModal').modal('show');
+                        }
+                    }
+                }
+            });
+        }
+
+        function removeAddress(id) {
+            $.ajax({
+                url: apiUrl + "delete/address",
+                method: 'POST',
+                headers: {
+                    "Authorization": "Bearer " + getApiToken,
+                },
+                data: {
+                    "user_address_id": id
+                },
+                success: function(data) {
+                    alert(data.message);
+                    window.location.reload();
+                }
+            });
+        }
+
+        $("#btnSaveAddress").click(function() {
+            if ($("#txtName").val() == "" || $("#txtCity").val() == "" || $("#txtMobile").val() == "" || $("#txtState").val() == "" || $("#txtAL1").val() == "" || $("#txtAL2").val() == "" || $("#txtPincode").val() == "") {
+                alert("Enter all fields.")
+            } else {
+                $.ajax({
+                    url: apiUrl + "save-address",
+                    method: 'POST',
+                    headers: {
+                        "Authorization": "Bearer " + getApiToken,
+                    },
+                    data: {
+                        "user_address_id": $("#hdnAddressID").val(),
+                        "address_type": "Home",
+                        "city": $("#txtCity").val(),
+                        "contact_number": $("#txtMobile").val(),
+                        "locality": $("#txtAL2").val(),
+                        "name": $("#txtName").val(),
+                        "state": $("#txtState").val(),
+                        "user_address": $("#txtAL1").val(),
+                        "zipcode": $("#txtPincode").val()
+                    },
+                    success: function(data) {
+                        alert(data.message);
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+
+        $("#checkoutDetails").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            autoFocus: true,
+            onStepChanging: function(event, currentIndex, newIndex) {
+                if (currentIndex == 0) {
+                    if (isStock == false) {
+                        alert("Out of stock.")
+                        return false;
+                    }
+                }
+                if (currentIndex == 1) {
+                    if (AddressID == 0) {
+                        alert("Please select any address.")
+                        return false;
+                    }
+                }
+                return true;
+            },
+            onFinished: function(event, currentIndex) {
+                var isPayPayTm = $("#rbPayPayTm").is(":checked");
+
+                if (isPayPayTm) {
+                    EMAIL = EMAIL.replace("@", "%40");
+                    $.ajax({
+                        url: apiUrl + "paytm/generateCheckSum?TXN_AMOUNT=" + TXN_AMOUNT + "&EMAIL=" + EMAIL + "&MOBILE_NO=" + MOBILE_NO,
+                        method: 'POST',
+                        headers: {
+                            "Authorization": "Bearer " + getApiToken,
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            var checksumhash = data.data.checksum_data.CHECKSUMHASH;
+                            alert(checksumhash);
+                            window.location.href = "www.bygoz.com/checkout?checksumdata=" + checksumhash;
+                        }
+                    });
+                } else {
+                    //var electronOpenLinkInBrowser = require("electron-open-link-in-browser");
+                    //electronOpenLinkInBrowser.bind("http://www.google.com");
+
+                    // mainWindow.webContents.on('new-window', function(e, url) {
+                    //     e.preventDefault();
+                    //     require('electron').shell.openExternal("http://www.google.com");
+                    // });
+
+                    alert("Please select payment option");
+                }
+            }
+        });
+    </script>
     <script>
         if (window.module) module = window.module;
     </script>

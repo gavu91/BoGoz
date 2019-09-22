@@ -55,7 +55,9 @@
         var lstBooks = [];
         var strAuthDetail = '';
         var authorDetail = JSON.parse(window.localStorage.getItem("authorData"));
-        console.log(authorDetail);
+
+        loadMaster("lnkAuthor");
+
         $("#imgAuthDiv").html('<img src="' + imageUrl + authorDetail.image + '" style="height: 300px;width: 100%;" />');
         strAuthDetail = strAuthDetail + '<h2>' + authorDetail.name + '</h2>';
         strAuthDetail = strAuthDetail + '<p class="email"> <b>Email : </b>' + authorDetail.email_id + '</p>';
