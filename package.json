@@ -1,7 +1,7 @@
 {
-  "name": "appv1",
+  "name": "bygoz",
   "version": "1.0.0",
-  "description": "Kindle Application for PDF Books",
+  "description": "Bygoz Application for PDF Books",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

@@ -6,7 +6,8 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>BYGOZ E-LEARNING PRIVATE LIMITED</title>
     <link rel="icon" href="THEME/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+        type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="THEME/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="THEME/plugins/jquery-steps/jquery.steps.css" rel="stylesheet">
@@ -32,18 +33,27 @@
                                         <h4 class="modal-title" id="largeModalLabel">Shipping Address</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <input type="hidden" id="hdnAddressID" value="0" /><br/>
-                                        <input type="text" class="form-control" id="txtName" placeholder="Name *" /><br/>
-                                        <input type="text" class="form-control" id="txtAL1" placeholder="Address Line 1 *" /><br/>
-                                        <input type="text" class="form-control" id="txtAL2" placeholder="Address Line 2 *" /><br/>
-                                        <input type="text" class="form-control" id="txtCity" placeholder="City *" /><br/>
-                                        <input type="number" class="form-control" id="txtPincode" placeholder="Pincode *" /><br/>
-                                        <input type="text" class="form-control" id="txtState" placeholder="State *" /><br/>
-                                        <input type="number" class="form-control" id="txtMobile" placeholder="Mobile *" /><br/>
+                                        <input type="hidden" id="hdnAddressID" value="0" /><br />
+                                        <input type="text" class="form-control" id="txtName"
+                                            placeholder="Name *" /><br />
+                                        <input type="text" class="form-control" id="txtAL1"
+                                            placeholder="Address Line 1 *" /><br />
+                                        <input type="text" class="form-control" id="txtAL2"
+                                            placeholder="Address Line 2 *" /><br />
+                                        <input type="text" class="form-control" id="txtCity"
+                                            placeholder="City *" /><br />
+                                        <input type="number" class="form-control" id="txtPincode"
+                                            placeholder="Pincode *" /><br />
+                                        <input type="text" class="form-control" id="txtState"
+                                            placeholder="State *" /><br />
+                                        <input type="number" class="form-control" id="txtMobile"
+                                            placeholder="Mobile *" /><br />
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" id="btnSaveAddress" class="btn btn-success waves-effect">SAVE CHANGES</button>
-                                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                        <button type="button" id="btnSaveAddress"
+                                            class="btn btn-success waves-effect">SAVE CHANGES</button>
+                                        <button type="button" class="btn btn-link waves-effect"
+                                            data-dismiss="modal">CLOSE</button>
                                     </div>
                                 </div>
                             </div>
@@ -73,10 +83,10 @@
                                         <div class="col-md-12">
                                             <span>Total MRP</span>
                                             <span class="cTXN_AMOUNT" style="float: right;"></span>
-                                            <br/>
+                                            <br />
                                             <span>Shipping Tax</span>
                                             <span class="cShippingCost" style="float: right;"></span>
-                                            <br/>
+                                            <br />
                                             <hr>
                                             <b>Total</b>
                                             <b class="TXN_AMOUNT" style="float: right;"></b>
@@ -124,10 +134,10 @@
                                         <div class="col-md-12">
                                             <span>Total MRP</span>
                                             <span class="cTXN_AMOUNT" style="float: right;"></span>
-                                            <br/>
+                                            <br />
                                             <span>Shipping Tax</span>
                                             <span class="cShippingCost" style="float: right;"></span>
-                                            <br/>
+                                            <br />
                                             <hr>
                                             <b>Total</b>
                                             <b class="TXN_AMOUNT" style="float: right;"></b>
@@ -140,7 +150,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <span>Paytm Pay</span>
-                                            <span style="float: right; margin-right: 2%;"><input id="rbPayPayTm" type="radio" /></span>
+                                            <span style="float: right; margin-right: 2%;"><input id="rbPayPayTm"
+                                                    type="radio" /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +190,7 @@
         var isStock = true;
         var AddressID = 0;
 
-        $(function() {
+        $(function () {
             if (window.localStorage.getItem("cBookID") != null) {
                 BookID = window.localStorage.getItem("cBookID");
             }
@@ -246,7 +257,7 @@
                 headers: {
                     "Authorization": "Bearer " + getApiToken,
                 },
-                success: function(data) {
+                success: function (data) {
                     var lstAddress = "";
                     var arrAddressList = data.data;
 
@@ -279,7 +290,7 @@
                 headers: {
                     "Authorization": "Bearer " + getApiToken,
                 },
-                success: function(data) {
+                success: function (data) {
                     var lstAddress = "";
                     var arrAddressList = data.data;
 
@@ -319,7 +330,7 @@
                 headers: {
                     "Authorization": "Bearer " + getApiToken,
                 },
-                success: function(data) {
+                success: function (data) {
                     var arrAddressList = data.data;
 
                     for (i = 0; i < arrAddressList.length; i++) {
@@ -350,14 +361,14 @@
                 data: {
                     "user_address_id": id
                 },
-                success: function(data) {
+                success: function (data) {
                     alert(data.message);
                     window.location.reload();
                 }
             });
         }
 
-        $("#btnSaveAddress").click(function() {
+        $("#btnSaveAddress").click(function () {
             if ($("#txtName").val() == "" || $("#txtCity").val() == "" || $("#txtMobile").val() == "" || $("#txtState").val() == "" || $("#txtAL1").val() == "" || $("#txtAL2").val() == "" || $("#txtPincode").val() == "") {
                 alert("Enter all fields.")
             } else {
@@ -378,7 +389,7 @@
                         "user_address": $("#txtAL1").val(),
                         "zipcode": $("#txtPincode").val()
                     },
-                    success: function(data) {
+                    success: function (data) {
                         alert(data.message);
                         window.location.reload();
                     }
@@ -391,7 +402,7 @@
             bodyTag: "section",
             transitionEffect: "slideLeft",
             autoFocus: true,
-            onStepChanging: function(event, currentIndex, newIndex) {
+            onStepChanging: function (event, currentIndex, newIndex) {
                 if (currentIndex == 0) {
                     if (isStock == false) {
                         alert("Out of stock.")
@@ -406,7 +417,7 @@
                 }
                 return true;
             },
-            onFinished: function(event, currentIndex) {
+            onFinished: function (event, currentIndex) {
                 var isPayPayTm = $("#rbPayPayTm").is(":checked");
 
                 if (isPayPayTm) {
@@ -417,22 +428,13 @@
                         headers: {
                             "Authorization": "Bearer " + getApiToken,
                         },
-                        success: function(data) {
-                            console.log(data);
+                        success: function (data) {
                             var checksumhash = data.data.checksum_data.CHECKSUMHASH;
                             alert(checksumhash);
-                            window.location.href = "www.bygoz.com/checkout?checksumdata=" + checksumhash;
+                            require('electron').shell.openExternal("http://www.bygoz.com/checkout?checksumdata=" + checksumhash);
                         }
                     });
                 } else {
-                    //var electronOpenLinkInBrowser = require("electron-open-link-in-browser");
-                    //electronOpenLinkInBrowser.bind("http://www.google.com");
-
-                    // mainWindow.webContents.on('new-window', function(e, url) {
-                    //     e.preventDefault();
-                    //     require('electron').shell.openExternal("http://www.google.com");
-                    // });
-
                     alert("Please select payment option");
                 }
             }
